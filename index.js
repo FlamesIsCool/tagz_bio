@@ -57,24 +57,76 @@ function claimUsername(req, res, body) {
   const { username } = querystring.parse(body);
   const clean = (username || '').toLowerCase();
   if (!clean || !/^[a-z0-9_]{3,15}$/.test(clean)) {
-    res.writeHead(400, {'Content-Type': 'text/html'});
+    res.writeHead(400, { 'Content-Type': 'text/html' });
     res.end(renderTemplate('Error', '<p>Invalid username.</p><a href="/">Back</a>'));
     return;
   }
   if (users[clean]) {
-    res.writeHead(409, {'Content-Type': 'text/html'});
+    res.writeHead(409, { 'Content-Type': 'text/html' });
     res.end(renderTemplate('Taken', '<p>Username already taken.</p><a href="/">Back</a>'));
     return;
   }
-  users[clean] = { username: clean };
+  users[clean] = {
+    username: clean,
+    description: '',
+    accentColor: '#00aa00',
+    textColor: '#ffffff',
+    backgroundColor: '#000000'
+  };
   saveUsers(users);
-  res.writeHead(200, {'Content-Type': 'text/html'});
-  res.end(renderTemplate('Success', `<p>Username claimed! Your page: <a href="/${clean}">${clean}</a></p>`));
+  res.writeHead(302, { Location: `/customize?user=${clean}` });
+  res.end();
+}
+
+function customizePage(name) {
+  const user = users[name];
+  if (!user) return null;
+  return renderTemplate('Customize', `
+    <h1>Customize @${name}</h1>
+    <form method="POST" action="/customize?user=${name}">
+      <label for="description">Description</label><br>
+      <input type="text" id="description" name="description" value="${user.description || ''}"><br>
+
+      <label for="accentColor">Accent Color</label><br>
+      <input type="text" id="accentColor" name="accentColor" value="${user.accentColor}"><br>
+
+      <label for="textColor">Text Color</label><br>
+      <input type="text" id="textColor" name="textColor" value="${user.textColor}"><br>
+
+      <label for="backgroundColor">Background Color</label><br>
+      <input type="text" id="backgroundColor" name="backgroundColor" value="${user.backgroundColor}"><br>
+      <input type="submit" value="Save">
+    </form>
+  `);
+}
+
+function saveCustomization(req, res, name, body) {
+  const user = users[name];
+  if (!user) {
+    res.writeHead(404, { 'Content-Type': 'text/html' });
+    res.end(renderTemplate('Not Found', '<p>User not found.</p>'));
+    return;
+  }
+  const data = querystring.parse(body);
+  user.description = data.description || '';
+  user.accentColor = data.accentColor || user.accentColor;
+  user.textColor = data.textColor || user.textColor;
+  user.backgroundColor = data.backgroundColor || user.backgroundColor;
+  saveUsers(users);
+  res.writeHead(302, { Location: `/${name}` });
+  res.end();
 }
 
 function userPage(name) {
-  if (!users[name]) return null;
-  return renderTemplate(name, `<h1>@${name}</h1><p>This is ${name}'s page on tagz.lol</p>`);
+  const user = users[name];
+  if (!user) return null;
+  return renderTemplate(`@${name}`, `
+    <div style="background:${user.backgroundColor};color:${user.textColor};padding:20px;border:2px solid ${user.accentColor};">
+      <h1 style="color:${user.accentColor}">@${name}</h1>
+      <p>${user.description}</p>
+      <p><a href="/customize?user=${name}">Edit profile</a></p>
+    </div>
+  `);
 }
 
 const server = http.createServer((req, res) => {
@@ -86,6 +138,21 @@ const server = http.createServer((req, res) => {
     let body = '';
     req.on('data', chunk => body += chunk.toString());
     req.on('end', () => claimUsername(req, res, body));
+  } else if (req.method === 'GET' && parsed.pathname === '/customize') {
+    const name = (querystring.parse(parsed.query).user || '').toLowerCase();
+    const page = customizePage(name);
+    if (page) {
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.end(page);
+    } else {
+      res.writeHead(404, { 'Content-Type': 'text/html' });
+      res.end(renderTemplate('Not Found', '<p>User not found.</p>'));
+    }
+  } else if (req.method === 'POST' && parsed.pathname === '/customize') {
+    const name = (querystring.parse(parsed.query).user || '').toLowerCase();
+    let body = '';
+    req.on('data', chunk => body += chunk.toString());
+    req.on('end', () => saveCustomization(req, res, name, body));
   } else if (req.method === 'GET') {
     const name = parsed.pathname.slice(1).toLowerCase();
     const page = userPage(name);
