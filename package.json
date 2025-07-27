@@ -1,0 +1,14 @@
+{
+  "name": "tagz_bio",
+  "version": "1.0.0",
+  "description": "A website where you can show your about and social accounts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
