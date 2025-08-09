@@ -2730,5 +2730,55 @@ window.savePublicProfile = function savePublicProfile() {
 }
 </script>
 
+<!-- API hookup -->
+<script>
+console.log("tagz API wired");
+
+const API_BASE = "https://api.tagz.lol";
+
+// Signup
+async function signup(username, email, password) {
+  const res = await fetch(`${API_BASE}/api/signup`, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({ username, email, password })
+  });
+  if (!res.ok) throw new Error(await res.text());
+  const data = await res.json();
+  localStorage.setItem("token", data.access_token);
+}
+
+// Login
+async function login(usernameOrEmail, password) {
+  const form = new URLSearchParams();
+  form.set("username", usernameOrEmail);
+  form.set("password", password);
+  const res = await fetch(`${API_BASE}/api/login`, {
+    method: "POST",
+    headers: {"Content-Type": "application/x-www-form-urlencoded"},
+    body: form
+  });
+  if (!res.ok) throw new Error(await res.text());
+  const data = await res.json();
+  localStorage.setItem("token", data.access_token);
+}
+
+// Publish/update profile
+async function publishProfile({ bio, avatar_url, theme_hex, links }) {
+  const token = localStorage.getItem("token");
+  const res = await fetch(`${API_BASE}/api/me`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify({ bio, avatar_url, theme_hex, links })
+  });
+  if (!res.ok) throw new Error(await res.text());
+  return await res.json();
+}
+</script>
+
+
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96c8a7e71370a56f',t:'MTc1NDc1NzIxMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
