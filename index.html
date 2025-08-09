@@ -2736,6 +2736,10 @@ console.log("tagz API wired");
 
 const API_BASE = "https://api.tagz.lol";
 
+function getToken() {
+  return localStorage.getItem("token"); // set on signup/login
+}
+
 // Signup
 async function signup(username, email, password) {
   const res = await fetch(`${API_BASE}/api/signup`, {
@@ -2776,6 +2780,85 @@ async function publishProfile({ bio, avatar_url, theme_hex, links }) {
   });
   if (!res.ok) throw new Error(await res.text());
   return await res.json();
+}
+</script>
+
+<script>
+// Collect fields from your dashboard UI
+function collectDashboardData() {
+  const bio = document.getElementById("bio")?.value || "";
+  const theme_hex = (document.getElementById("customColorPicker")?.value || "#00ff88").toLowerCase();
+
+  // Avatar: for now, use whatever URL is in the preview img.
+  // (If you're letting users upload files, they need to be uploaded somewhere and then set avatar_url to that hosted URL.)
+  const avatar_url = document.getElementById("profilePreview")?.src || "";
+
+  // Links: expect rows inside #linksList with inputs having these classes
+  const links = Array.from(document.querySelectorAll("#linksList .link-item")).map((row, i) => ({
+    title: row.querySelector(".link-title")?.value?.trim() || "Link",
+    url: row.querySelector(".link-url")?.value?.trim() || "#",
+    icon: row.querySelector(".link-icon")?.value?.trim() || "",
+    order_index: i
+  }));
+
+  return { bio, avatar_url, theme_hex, links };
+}
+
+async function publishProfile(payload) {
+  const token = getToken();
+  if (!token) throw new Error("Not logged in. Please log in first.");
+
+  const res = await fetch(`${API_BASE}/api/me`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify(payload)
+  });
+
+  if (!res.ok) {
+    const t = await res.text();
+    throw new Error(t || "Failed to save profile.");
+  }
+  return await res.json();
+}
+
+async function onPublish() {
+  try {
+    const payload = collectDashboardData();
+    const saved = await publishProfile(payload);
+
+    // Navigate to /<username> so you can see it live
+    history.pushState({}, "", `/${saved.username}`);
+    if (typeof route === "function") route();  // if you're using the SPA router
+    alert("Saved! Opening your public page…");
+  } catch (e) {
+    console.error(e);
+    alert("Save failed: " + e.message);
+  }
+}
+</script>
+
+<script>
+async function loadPublic(username) {
+  const res = await fetch(`${API_BASE}/api/profile/${encodeURIComponent(username)}`);
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error(await res.text());
+  return await res.json();
+}
+
+// If you’re using the router I gave you:
+async function route() {
+  const path = (location.pathname || "/").replace(/\/+$/, "") || "/";
+  if (path === "/") { showHome(); return; }
+  if (path === "/login") { hideAllPages(); logInPage.classList.remove("hidden"); return; }
+  if (path === "/signup") { hideAllPages(); signUpPage.classList.remove("hidden"); return; }
+
+  const username = path.slice(1).toLowerCase();
+  const data = await loadPublic(username);
+  if (!data) { showNotFound(); return; }
+  showPublicProfile({ username, data }); // uses your existing renderer
 }
 </script>
 
