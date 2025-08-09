@@ -1,0 +1,2734 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tagz.lol - Your Personal Link Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'neon-green': '#00ff88',
+                    },
+                    animation: {
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'float': 'float 3s ease-in-out infinite',
+                        'fadeInUp': 'fadeInUp 0.8s ease-out forwards',
+                        'fadeInLeft': 'fadeInLeft 0.8s ease-out forwards',
+                        'fadeInRight': 'fadeInRight 0.8s ease-out forwards',
+                        'slideInUp': 'slideInUp 0.6s ease-out forwards',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 2s infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                        'heartbeat': 'heartbeat 1.5s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        glow: {
+                            '0%': { textShadow: '0 0 20px #00ff88, 0 0 30px #00ff88, 0 0 40px #00ff88' },
+                            '100%': { textShadow: '0 0 30px #00ff88, 0 0 40px #00ff88, 0 0 50px #00ff88' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        fadeInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-30px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        fadeInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(30px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' }
+                        },
+                        slideInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(100px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' }
+                        },
+                        heartbeat: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.05)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .animate-on-scroll.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        .stagger-6 { animation-delay: 0.6s; }
+        
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+        }
+        
+        .page-transition {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .loading-shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        .smooth-appear {
+            animation: smoothAppear 0.6s ease-out forwards;
+        }
+        
+        @keyframes smoothAppear {
+            0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-inter overflow-x-hidden">
+    <!-- Hero Section -->
+    <section id="homePage" class="min-h-screen flex flex-col justify-center items-center relative px-4 overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 bg-gradient-radial from-neon-green/10 via-transparent to-transparent opacity-30 animate-pulse-slow"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-neon-green/5 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute top-1/4 left-1/4 w-32 h-32 bg-neon-green/3 rounded-full blur-2xl animate-bounce-slow"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-48 h-48 bg-neon-green/3 rounded-full blur-2xl animate-pulse-slow"></div>
+        
+        <!-- Floating Particles -->
+        <div class="absolute top-20 left-10 w-2 h-2 bg-neon-green rounded-full animate-float opacity-60"></div>
+        <div class="absolute top-40 right-20 w-1 h-1 bg-neon-green rounded-full animate-bounce-slow opacity-40"></div>
+        <div class="absolute bottom-32 left-20 w-3 h-3 bg-neon-green rounded-full animate-pulse-slow opacity-50"></div>
+        <div class="absolute bottom-20 right-10 w-2 h-2 bg-neon-green rounded-full animate-float opacity-70"></div>
+        
+        <!-- Main Content -->
+        <div class="text-center z-10 max-w-4xl mx-auto animate-on-scroll">
+            <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tight animate-fadeInUp">
+                tagz<span class="text-neon-green animate-glow">.lol</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-12 font-light animate-fadeInUp stagger-2">
+                Your personal link hub
+            </p>
+            
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fadeInUp stagger-3">
+                <button onclick="showSignUp()" class="group relative px-8 py-4 bg-neon-green text-black font-semibold rounded-xl transition-all duration-500 hover:shadow-lg hover:shadow-neon-green/50 hover:scale-110 hover:bg-neon-green/90 hover-lift transform hover:rotate-1">
+                    <span class="relative z-10">Sign Up</span>
+                    <div class="absolute inset-0 bg-neon-green rounded-xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                </button>
+                <button onclick="showLogIn()" class="px-8 py-4 border-2 border-neon-green text-neon-green font-semibold rounded-xl transition-all duration-500 hover:bg-neon-green hover:text-black hover:shadow-lg hover:shadow-neon-green/30 hover:scale-110 hover-lift transform hover:-rotate-1">
+                    Log In
+                </button>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-neon-green opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- How it Works Section -->
+    <section class="py-20 px-4 relative">
+        <!-- Background Animation -->
+        <div class="absolute top-10 right-10 w-20 h-20 bg-neon-green/5 rounded-full blur-xl animate-pulse-slow"></div>
+        <div class="absolute bottom-10 left-10 w-32 h-32 bg-neon-green/3 rounded-full blur-2xl animate-float"></div>
+        
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 animate-on-scroll">
+                How it <span class="text-neon-green animate-glow">Works</span>
+            </h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 transition-all duration-500 hover:bg-white/10 hover:border-neon-green/50 hover:shadow-xl hover:shadow-neon-green/20 hover:-translate-y-4 hover:scale-105 animate-on-scroll stagger-1 hover-lift">
+                    <div class="w-16 h-16 bg-neon-green/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-neon-green/30 transition-all duration-300 group-hover:animate-heartbeat">
+                        <svg class="w-8 h-8 text-neon-green transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 group-hover:text-neon-green transition-colors duration-300">Create a Page</h3>
+                    <p class="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">Set up your personalized profile and link hub in just seconds</p>
+                    <div class="absolute -top-2 -right-2 w-4 h-4 bg-neon-green rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-ping"></div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 transition-all duration-500 hover:bg-white/10 hover:border-neon-green/50 hover:shadow-xl hover:shadow-neon-green/20 hover:-translate-y-4 hover:scale-105 animate-on-scroll stagger-2 hover-lift">
+                    <div class="w-16 h-16 bg-neon-green/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-neon-green/30 transition-all duration-300 group-hover:animate-heartbeat">
+                        <svg class="w-8 h-8 text-neon-green transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 group-hover:text-neon-green transition-colors duration-300">Add Your Links</h3>
+                    <p class="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">Organize all your social media, websites, and content in one place</p>
+                    <div class="absolute -top-2 -right-2 w-4 h-4 bg-neon-green rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-ping"></div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 transition-all duration-500 hover:bg-white/10 hover:border-neon-green/50 hover:shadow-xl hover:shadow-neon-green/20 hover:-translate-y-4 hover:scale-105 animate-on-scroll stagger-3 hover-lift">
+                    <div class="w-16 h-16 bg-neon-green/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-neon-green/30 transition-all duration-300 group-hover:animate-heartbeat">
+                        <svg class="w-8 h-8 text-neon-green transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 group-hover:text-neon-green transition-colors duration-300">Share Everywhere</h3>
+                    <p class="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">Use your tagz.lol link in your bio, email signature, and more</p>
+                    <div class="absolute -top-2 -right-2 w-4 h-4 bg-neon-green rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-ping"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured User Preview -->
+    <section class="py-20 px-4 relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute top-0 left-1/4 w-64 h-64 bg-neon-green/5 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div class="absolute bottom-0 right-1/4 w-48 h-48 bg-neon-green/3 rounded-full blur-2xl animate-float"></div>
+        
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-16 animate-on-scroll">
+                See it in <span class="text-neon-green animate-glow">Action</span>
+            </h2>
+            
+            <div class="max-w-sm mx-auto bg-white/5 backdrop-blur-lg border border-white/20 rounded-2xl p-8 shadow-2xl hover:shadow-neon-green/20 transition-all duration-500 animate-float hover-lift animate-on-scroll relative group">
+                <!-- Animated Border -->
+                <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-neon-green/20 via-transparent to-neon-green/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
+                
+                <!-- Profile Image -->
+                <div class="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden ring-4 ring-neon-green/30 transition-all duration-300 group-hover:ring-neon-green/60 group-hover:scale-110 relative">
+                    <div class="w-full h-full bg-gray-600 flex items-center justify-center text-3xl transition-transform duration-300 group-hover:scale-110">👤</div>
+                    <div class="absolute inset-0 bg-neon-green/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                
+                <!-- Username -->
+                <h3 class="text-2xl font-bold mb-6 text-neon-green transition-all duration-300 group-hover:animate-pulse">@yourname</h3>
+                
+                <!-- Sample Links -->
+                <div class="space-y-3">
+                    <button class="w-full py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white font-medium transition-all duration-500 hover:bg-neon-green hover:text-black hover:border-neon-green hover:scale-105 hover:shadow-lg hover:shadow-neon-green/30 transform hover:-rotate-1 animate-fadeInUp stagger-1">
+                        🌐 My Website
+                    </button>
+                    <button class="w-full py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white font-medium transition-all duration-500 hover:bg-neon-green hover:text-black hover:border-neon-green hover:scale-105 hover:shadow-lg hover:shadow-neon-green/30 transform hover:rotate-1 animate-fadeInUp stagger-2">
+                        📱 Instagram
+                    </button>
+                </div>
+                
+                <!-- Floating Elements -->
+                <div class="absolute -top-4 -left-4 w-8 h-8 bg-neon-green/20 rounded-full animate-bounce opacity-60"></div>
+                <div class="absolute -bottom-4 -right-4 w-6 h-6 bg-neon-green/30 rounded-full animate-pulse opacity-80"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 px-4 relative">
+        <!-- Background Animation -->
+        <div class="absolute top-1/2 left-0 w-40 h-40 bg-neon-green/5 rounded-full blur-2xl animate-float"></div>
+        <div class="absolute top-0 right-0 w-24 h-24 bg-neon-green/3 rounded-full blur-xl animate-bounce-slow"></div>
+        
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8 animate-on-scroll">
+                About <span class="text-neon-green animate-glow">tagz.lol</span>
+            </h2>
+            <p class="text-xl text-gray-300 leading-relaxed animate-on-scroll stagger-2 hover:text-gray-200 transition-colors duration-300">
+                Tagz.lol helps creators, businesses, and influencers organize their web presence in one simple link. 
+                Share everything that matters to you with a single, beautiful, customizable page that represents your digital identity.
+            </p>
+            
+            <!-- Animated Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+                <div class="animate-on-scroll stagger-3 group">
+                    <div class="text-3xl font-bold text-neon-green mb-2 transition-all duration-300 group-hover:scale-110 group-hover:animate-pulse">10K+</div>
+                    <div class="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">Active Users</div>
+                </div>
+                <div class="animate-on-scroll stagger-4 group">
+                    <div class="text-3xl font-bold text-neon-green mb-2 transition-all duration-300 group-hover:scale-110 group-hover:animate-pulse">50M+</div>
+                    <div class="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">Link Clicks</div>
+                </div>
+                <div class="animate-on-scroll stagger-5 group">
+                    <div class="text-3xl font-bold text-neon-green mb-2 transition-all duration-300 group-hover:scale-110 group-hover:animate-pulse">99.9%</div>
+                    <div class="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">Uptime</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sign Up Page -->
+    <div id="signUpPage" class="fixed inset-0 bg-black z-50 hidden page-transition">
+        <div class="min-h-screen flex flex-col justify-center items-center px-4 relative overflow-hidden">
+            <!-- Animated Background -->
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-neon-green/5 rounded-full blur-3xl animate-pulse-slow"></div>
+            <div class="absolute top-1/4 left-1/4 w-32 h-32 bg-neon-green/3 rounded-full blur-2xl animate-float"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-48 h-48 bg-neon-green/3 rounded-full blur-2xl animate-bounce-slow"></div>
+            
+            <!-- Floating Particles -->
+            <div class="absolute top-20 left-10 w-2 h-2 bg-neon-green rounded-full animate-float opacity-60"></div>
+            <div class="absolute top-40 right-20 w-1 h-1 bg-neon-green rounded-full animate-bounce-slow opacity-40"></div>
+            <div class="absolute bottom-32 left-20 w-3 h-3 bg-neon-green rounded-full animate-pulse-slow opacity-50"></div>
+            
+            <div class="w-full max-w-md z-10 smooth-appear">
+                <!-- Header -->
+                <div class="text-center mb-8 animate-fadeInUp">
+                    <h1 class="text-4xl font-black mb-2">
+                        Join <span class="text-neon-green animate-glow">tagz.lol</span>
+                    </h1>
+                    <p class="text-gray-400">Create your personal link hub</p>
+                </div>
+
+                <!-- Form -->
+                <div class="bg-white/5 backdrop-blur-lg border border-white/20 rounded-2xl p-8 shadow-2xl hover:shadow-neon-green/20 transition-all duration-500 animate-fadeInUp stagger-2 hover-lift">
+                    <form id="signUpForm" class="space-y-6">
+                        <div class="animate-fadeInUp stagger-3">
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Username</label>
+                            <input type="text" id="signUpUsername" placeholder="yourname" required class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-neon-green focus:border-transparent transition-all duration-300 focus:scale-105">
+                        </div>
+                        <div class="animate-fadeInUp stagger-4">
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                            <input type="email" id="signUpEmail" placeholder="you@example.com" required class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-neon-green focus:border-transparent transition-all duration-300 focus:scale-105">
+                        </div>
+                        <div class="animate-fadeInUp stagger-5">
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Password</label>
+                            <input type="password" id="signUpPassword" placeholder="••••••••" required class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-neon-green focus:border-transparent transition-all duration-300 focus:scale-105">
+                        </div>
+                        
+                        <button type="submit" class="w-full py-3 bg-neon-green text-black font-semibold rounded-lg transition-all duration-500 hover:bg-neon-green/90 hover:shadow-lg hover:shadow-neon-green/50 hover:scale-105 animate-fadeInUp stagger-6 hover-lift">
+                            Create Account
+                        </button>
+                    </form>
+                    
+                    <div class="mt-6 text-center animate-fadeInUp stagger-6">
+                        <p class="text-gray-400">Already have an account? 
+                            <button onclick="showLogIn()" class="text-neon-green hover:underline font-medium transition-all duration-300 hover:scale-105 inline-block">Log in</button>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Back Button -->
+                <div class="text-center mt-6 animate-fadeInUp stagger-6">
+                    <button onclick="showHome()" class="text-gray-400 hover:text-neon-green transition-all duration-300 hover:scale-105">
+                        ← Back to Home
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Log In Page -->
+    <div id="logInPage" class="fixed inset-0 bg-black z-50 hidden page-transition">
+        <div class="min-h-screen flex flex-col justify-center items-center px-4 relative overflow-hidden">
+            <!-- Animated Background -->
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-neon-green/5 rounded-full blur-3xl animate-pulse-slow"></div>
+            <div class="absolute top-1/4 right-1/4 w-32 h-32 bg-neon-green/3 rounded-full blur-2xl animate-float"></div>
+            <div class="absolute bottom-1/4 left-1/4 w-48 h-48 bg-neon-green/3 rounded-full blur-2xl animate-bounce-slow"></div>
+            
+            <!-- Floating Particles -->
+            <div class="absolute top-32 right-10 w-2 h-2 bg-neon-green rounded-full animate-float opacity-60"></div>
+            <div class="absolute top-60 left-20 w-1 h-1 bg-neon-green rounded-full animate-bounce-slow opacity-40"></div>
+            <div class="absolute bottom-40 right-20 w-3 h-3 bg-neon-green rounded-full animate-pulse-slow opacity-50"></div>
+            
+            <div class="w-full max-w-md z-10 smooth-appear">
+                <!-- Header -->
+                <div class="text-center mb-8 animate-fadeInUp">
+                    <h1 class="text-4xl font-black mb-2">
+                        Welcome back to <span class="text-neon-green animate-glow">tagz.lol</span>
+                    </h1>
+                    <p class="text-gray-400">Sign in to your account</p>
+                </div>
+
+                <!-- Form -->
+                <div class="bg-white/5 backdrop-blur-lg border border-white/20 rounded-2xl p-8 shadow-2xl hover:shadow-neon-green/20 transition-all duration-500 animate-fadeInUp stagger-2 hover-lift">
+                    <form id="logInForm" class="space-y-6">
+                        <div class="animate-fadeInUp stagger-3">
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Email or Username</label>
+                            <input type="text" id="logInEmail" placeholder="you@example.com" required class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-neon-green focus:border-transparent transition-all duration-300 focus:scale-105">
+                        </div>
+                        <div class="animate-fadeInUp stagger-4">
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Password</label>
+                            <input type="password" id="logInPassword" placeholder="••••••••" required class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-neon-green focus:border-transparent transition-all duration-300 focus:scale-105">
+                        </div>
+                        
+                        <div class="flex items-center justify-between animate-fadeInUp stagger-5">
+                            <label class="flex items-center group">
+                                <input type="checkbox" class="w-4 h-4 text-neon-green bg-white/10 border-white/20 rounded focus:ring-neon-green focus:ring-2 transition-all duration-300 group-hover:scale-110">
+                                <span class="ml-2 text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300">Remember me</span>
+                            </label>
+                            <a href="#" class="text-sm text-neon-green hover:underline transition-all duration-300 hover:scale-105">Forgot password?</a>
+                        </div>
+                        
+                        <button type="submit" class="w-full py-3 bg-neon-green text-black font-semibold rounded-lg transition-all duration-500 hover:bg-neon-green/90 hover:shadow-lg hover:shadow-neon-green/50 hover:scale-105 animate-fadeInUp stagger-6 hover-lift">
+                            Sign In
+                        </button>
+                    </form>
+                    
+                    <div class="mt-6 text-center animate-fadeInUp stagger-6">
+                        <p class="text-gray-400">Don't have an account? 
+                            <button onclick="showSignUp()" class="text-neon-green hover:underline font-medium transition-all duration-300 hover:scale-105 inline-block">Sign up</button>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Back Button -->
+                <div class="text-center mt-6 animate-fadeInUp stagger-6">
+                    <button onclick="showHome()" class="text-gray-400 hover:text-neon-green transition-all duration-300 hover:scale-105">
+                        ← Back to Home
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Analytics Page -->
+    <div id="analyticsPage" class="fixed inset-0 bg-black z-50 hidden page-transition">
+        <div class="h-screen flex flex-col overflow-hidden">
+            <!-- Header -->
+            <div class="bg-white/5 backdrop-blur-lg border-b border-white/20 p-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <button onclick="showDashboard(document.getElementById('username').value)" class="text-gray-400 hover:text-neon-green transition-colors duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                        </button>
+                        <h1 class="text-2xl font-bold">
+                            Analytics <span class="text-neon-green">Dashboard</span>
+                        </h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <button type="button" id="analyticsTimeFilterBtn" onclick="toggleDropdown('analyticsTimeFilter')" class="px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-neon-green focus:border-transparent transition-all duration-300 flex items-center space-x-2">
+                                <span id="analyticsTimeFilterText">Last 7 days</span>
+                                <svg class="w-4 h-4 transition-transform duration-300" id="analyticsTimeFilterArrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div id="analyticsTimeFilterDropdown" class="absolute top-full right-0 mt-1 bg-black/90 backdrop-blur-lg border border-white/20 rounded-lg shadow-2xl z-50 hidden min-w-[150px]">
+                                <div class="py-1">
+                                    <button type="button" onclick="selectDropdownOption('analyticsTimeFilter', '7', 'Last 7 days')" class="w-full px-3 py-2 text-left text-white hover:bg-neon-green hover:text-black transition-all duration-300">Last 7 days</button>
+                                    <button type="button" onclick="selectDropdownOption('analyticsTimeFilter', '30', 'Last 30 days')" class="w-full px-3 py-2 text-left text-white hover:bg-neon-green hover:text-black transition-all duration-300">Last 30 days</button>
+                                    <button type="button" onclick="selectDropdownOption('analyticsTimeFilter', '90', 'Last 90 days')" class="w-full px-3 py-2 text-left text-white hover:bg-neon-green hover:text-black transition-all duration-300">Last 90 days</button>
+                                    <button type="button" onclick="selectDropdownOption('analyticsTimeFilter', '365', 'Last year')" class="w-full px-3 py-2 text-left text-white hover:bg-neon-green hover:text-black transition-all duration-300">Last year</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Content -->
+            <div class="flex-1 overflow-y-auto p-6">
+                <!-- Stats Overview -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white/5 backdrop-blur-lg border border-white/20 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover-lift group">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 bg-neon-green/20 rounded-full flex items-center justify-center group-hover:animate-heartbeat">
+                                <svg class="w-6 h-6 text-neon-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                </svg>
+                            </div>
+                            <span class="text-sm text-green-400 bg-green-400/20 px-2 py-1 rounded-full">+12.5%</span>
+                        </div>
+                        <div id="analyticsViews" class="text-3xl font-bold text-white mb-2 group-hover:text-neon-green transition-colors duration-300">1,247</div>
+                        <div class="text-gray-400 text-sm">Total Page Views</div>
+                    </div>
+
+                    <div class="bg-white/5 backdrop-blur-lg border border-white/20 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover-lift group">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center group-hover:animate-heartbeat">
+                                <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path>
+                                </svg>
+                            </div>
+                            <span class="text-sm text-blue-400 bg-blue-400/20 px-2 py-1 rounded-full">+8.3%</span>
+                        </div>
+                        <div id="analyticsClicks" class="text-3xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors duration-300">342</div>
+                        <div class="text-gray-400 text-sm">Total Link Clicks</div>
+                    </div>
+
+                    <div class="bg-white/5 backdrop-blur-lg border border-white/20 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover-lift group">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center group-hover:animate-heartbeat">
+                                <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                </svg>
+                            </div>
+                            <span class="text-sm text-purple-400 bg-purple-400/20 px-2 py-1 rounded-full">+2.1%</span>
+                        </div>
+                        <div id="analyticsCTR" class="text-3xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors duration-300">27.4%</div>
+                        <div class="text-gray-400 text-sm">Click-Through Rate</div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                    <!-- Views Chart -->
+                    <div class="bg-white/5 backdrop-blur-lg border border-white/20 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300">
+                        <h3 class="text-xl font-semibold mb-6 text-neon-green">Page Views Over Time</h3>
+                        <div class="relative h-64">
+                            <canvas id="viewsChart" class="w-full h-full"></canvas>
+                            <!-- Simple Bar Chart -->
+                            <div class="flex items-end justify-between h-48 space-x-2">
+                                <div class="flex flex-col items-center space-y-2">
+                                    <div class="w-8 bg-neon-green rounded-t-lg transition-all duration-500 hover:bg-neon-green/80" style="height: 60px;"></div>
+                                    <span class="text-xs text-gray-400">Mon</span>
+                                </div>
+                                <div class="flex flex-col items-center space-y-2">
+                                    <div class="w-8 bg-neon-green rounded-t-lg transition-all duration-500 hover:bg-neon-green/80" style="height: 80px;"></div>
+                                    <span class="text-xs text-gray-400">Tue</span>
+                                </div>
+                                <div class="flex flex-col items-center space-y-2">
+                                    <div class="w-8 bg-neon-green rounded-t-lg transition-all duration-500 hover:bg-neon-green/80" style="height: 45px;"></div>
+                                    <span class="text-xs text-gray-400">Wed</span>
+                                </div>
+                                <div class="flex flex-col items-center space-y-2">
+                                    <div class="w-8 bg-neon-green rounded-t-lg transition-all duration-500 hover:bg-neon-green/80" style="height: 120px;"></div>
+                                    <span class="text-xs text-gray-400">Thu</span>
+                                </div>
+                                <div class="flex flex-col items-center space-y-2">
+                                    <div class="w-8 bg-neon-green rounded-t-lg transition-all duration-500 hover:bg-neon-green/80" style="height: 95px;"></div>
+                                    <span class="text-xs text-gray-400">Fri</span>
+                                </div>
+                                <div class="flex flex-col items-center space-y-2">
+                                    <div class="w-8 bg-neon-green rounded-t-lg transition-all duration-500 hover:bg-neon-green/80" style="height: 140px;"></div>
+                                    <span class="text-xs text-gray-400">Sat</span>
+                                </div>
+                                <div class="flex flex-col items-center space-y-2">
+                                    <div class="w-8 bg-neon-green rounded-t-lg transition-all duration-500 hover:bg-neon-green/80" style="height: 110px;"></div>
+                                    <span class="text-xs text-gray-400">Sun</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Clicks Chart -->
+                    <div class="bg-white/5 backdrop-blur-lg border border-white/20 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300">
+                        <h3 class="text-xl font-semibold mb-6 text-blue-400">Link Clicks Over Time</h3>
+                        <div class="relative h-64">
+                            <!-- Simple Bar Chart -->
+                            <div class="flex items-end justify-between h-48 space-x-2">
+                                <div class="flex flex-col items-center space-y-2">
+                                    <div class="w-8 bg-blue-400 rounded-t-lg transition-all duration-500 hover:bg-blue-400/80" style="height: 35px;"></div>
+                                    <span class="text-xs text-gray-400">Mon</span>
+                                </div>
+                                <div class="flex flex-col items-center space-y-2">
+                                    <div class="w-8 bg-blue-400 rounded-t-lg transition-all duration-500 hover:bg-blue-400/80" style="height: 50px;"></div>
+                                    <span class="text-xs text-gray-400">Tue</span>
+                                </div>
+                                <div class="flex flex-col items-center space-y-2">
+                                    <div class="w-8 bg-blue-400 rounded-t-lg transition-all duration-500 hover:bg-blue-400/80" style="height: 25px;"></div>
+                                    <span class="text-xs text-gray-400">Wed</span>
+                                </div>
+                                <div class="flex flex-col items-center space-y-2">
+                                    <div class="w-8 bg-blue-400 rounded-t-lg transition-all duration-500 hover:bg-blue-400/80" style="height: 70px;"></div>
+                                    <span class="text-xs text-gray-400">Thu</span>
+                                </div>
+                                <div class="flex flex-col items-center space-y-2">
+                                    <div class="w-8 bg-blue-400 rounded-t-lg transition-all duration-500 hover:bg-blue-400/80" style="height: 55px;"></div>
+                                    <span class="text-xs text-gray-400">Fri</span>
+                                </div>
+                                <div class="flex flex-col items-center space-y-2">
+                                    <div class="w-8 bg-blue-400 rounded-t-lg transition-all duration-500 hover:bg-blue-400/80" style="height: 85px;"></div>
+                                    <span class="text-xs text-gray-400">Sat</span>
+                                </div>
+                                <div class="flex flex-col items-center space-y-2">
+                                    <div class="w-8 bg-blue-400 rounded-t-lg transition-all duration-500 hover:bg-blue-400/80" style="height: 65px;"></div>
+                                    <span class="text-xs text-gray-400">Sun</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top Links Performance -->
+                <div class="bg-white/5 backdrop-blur-lg border border-white/20 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300">
+                    <h3 class="text-xl font-semibold mb-6 text-neon-green">Top Performing Links</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-2xl">🌐</span>
+                                <div>
+                                    <div class="font-medium text-white group-hover:text-neon-green transition-colors duration-300">My Website</div>
+                                    <div class="text-sm text-gray-400">yourwebsite.com</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold text-neon-green">156 clicks</div>
+                                <div class="text-sm text-gray-400">45.6% CTR</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-2xl">📱</span>
+                                <div>
+                                    <div class="font-medium text-white group-hover:text-neon-green transition-colors duration-300">Instagram</div>
+                                    <div class="text-sm text-gray-400">instagram.com/yourname</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold text-neon-green">98 clicks</div>
+                                <div class="text-sm text-gray-400">28.7% CTR</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-2xl">🎵</span>
+                                <div>
+                                    <div class="font-medium text-white group-hover:text-neon-green transition-colors duration-300">Spotify</div>
+                                    <div class="text-sm text-gray-400">spotify.com/artist/yourname</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold text-neon-green">88 clicks</div>
+                                <div class="text-sm text-gray-400">25.7% CTR</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 404 Page -->
+    <div id="notFoundPage" class="fixed inset-0 bg-black z-50 hidden page-transition">
+        <div class="min-h-screen flex flex-col justify-center items-center relative px-4 overflow-hidden">
+            <!-- Animated Background -->
+            <div class="absolute inset-0 bg-gradient-radial from-red-500/10 via-transparent to-transparent opacity-30 animate-pulse-slow"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-red-500/5 rounded-full blur-3xl animate-float"></div>
+            <div class="absolute top-1/4 left-1/4 w-32 h-32 bg-red-500/3 rounded-full blur-2xl animate-bounce-slow"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-48 h-48 bg-red-500/3 rounded-full blur-2xl animate-pulse-slow"></div>
+            
+            <!-- Floating Particles -->
+            <div class="absolute top-20 left-10 w-2 h-2 bg-red-500 rounded-full animate-float opacity-60"></div>
+            <div class="absolute top-40 right-20 w-1 h-1 bg-red-500 rounded-full animate-bounce-slow opacity-40"></div>
+            <div class="absolute bottom-32 left-20 w-3 h-3 bg-red-500 rounded-full animate-pulse-slow opacity-50"></div>
+            <div class="absolute bottom-20 right-10 w-2 h-2 bg-red-500 rounded-full animate-float opacity-70"></div>
+            
+            <!-- Main Content -->
+            <div class="text-center z-10 max-w-4xl mx-auto animate-on-scroll">
+                <!-- 404 Animation -->
+                <div class="mb-8 relative">
+                    <h1 class="text-9xl md:text-[12rem] font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-pink-500 animate-glow opacity-20 select-none">
+                        404
+                    </h1>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-32 h-32 border-4 border-red-500/30 rounded-full animate-spin-slow"></div>
+                    </div>
+                </div>
+                
+                <h2 class="text-4xl md:text-6xl font-black mb-6 tracking-tight animate-fadeInUp">
+                    Page Not <span class="text-red-500 animate-glow">Found</span>
+                </h2>
+                <p class="text-xl md:text-2xl text-gray-300 mb-12 font-light animate-fadeInUp stagger-2">
+                    Oops! The page you're looking for doesn't exist.
+                </p>
+                
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fadeInUp stagger-3">
+                    <button onclick="showHome()" class="group relative px-8 py-4 bg-neon-green text-black font-semibold rounded-xl transition-all duration-500 hover:shadow-lg hover:shadow-neon-green/50 hover:scale-110 hover:bg-neon-green/90 hover-lift transform hover:rotate-1">
+                        <span class="relative z-10">🏠 Go Home</span>
+                        <div class="absolute inset-0 bg-neon-green rounded-xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                    </button>
+                    <button onclick="showSignUp()" class="px-8 py-4 border-2 border-red-500 text-red-500 font-semibold rounded-xl transition-all duration-500 hover:bg-red-500 hover:text-white hover:shadow-lg hover:shadow-red-500/30 hover:scale-110 hover-lift transform hover:-rotate-1">
+                        Create Your Page
+                    </button>
+                </div>
+                
+                <!-- Fun Error Messages -->
+                <div class="mt-12 animate-fadeInUp stagger-4">
+                    <p class="text-gray-400 text-sm mb-4">Maybe you were looking for:</p>
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <span class="px-3 py-1 bg-white/5 border border-white/20 rounded-full text-sm text-gray-400 hover:text-neon-green hover:border-neon-green/50 transition-all duration-300 cursor-pointer">
+                            @yourname
+                        </span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/20 rounded-full text-sm text-gray-400 hover:text-neon-green hover:border-neon-green/50 transition-all duration-300 cursor-pointer">
+                            @creator
+                        </span>
+                        <span class="px-3 py-1 bg-white/5 border border-white/20 rounded-full text-sm text-gray-400 hover:text-neon-green hover:border-neon-green/50 transition-all duration-300 cursor-pointer">
+                            @artist
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Glitch Effect -->
+            <div class="absolute inset-0 pointer-events-none">
+                <div class="absolute top-1/3 left-0 w-full h-1 bg-red-500 opacity-20 animate-pulse"></div>
+                <div class="absolute top-2/3 left-0 w-full h-1 bg-red-500 opacity-10 animate-pulse" style="animation-delay: 0.5s;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="fixed inset-0 bg-black z-50 hidden page-transition">
+        <div class="h-screen flex">
+            <!-- Sidebar -->
+            <div class="w-80 bg-white/5 backdrop-blur-lg border-r border-white/20 overflow-y-auto smooth-appear">
+                <div class="p-6">
+                    <!-- Header -->
+                    <div class="flex items-center justify-between mb-8">
+                        <h1 class="text-2xl font-bold">
+                            tagz<span class="text-neon-green">.lol</span>
+                        </h1>
+                        <button onclick="logout()" class="text-gray-400 hover:text-neon-green transition-colors duration-300">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Profile Section -->
+                    <div class="mb-8">
+                        <h2 class="text-lg font-semibold mb-4 text-neon-green">Profile</h2>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Profile Picture</label>
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-16 h-16 rounded-full overflow-hidden bg-white/10">
+                                        <img id="profilePreview" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23374151'/%3E%3Ctext x='32' y='40' text-anchor='middle' fill='%23ffffff' font-size='24'%3E👤%3C/text%3E%3C/svg%3E" alt="Profile" class="w-full h-full object-cover">
+                                    </div>
+                                    <input type="file" id="profilePicture" accept="image/*" class="hidden">
+                                    <button onclick="document.getElementById('profilePicture').click()" class="px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-sm hover:bg-white/20 transition-colors duration-300">
+                                        Upload
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Username</label>
+                                <input type="text" id="username" placeholder="yourname" class="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-neon-green focus:border-transparent transition-all duration-300">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Bio</label>
+                                <textarea id="bio" placeholder="Tell people about yourself..." rows="3" class="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-neon-green focus:border-transparent transition-all duration-300 resize-none"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Appearance Section -->
+                    <div class="mb-8">
+                        <h2 class="text-lg font-semibold mb-4 text-neon-green">Appearance</h2>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Color Theme</label>
+                                <div class="grid grid-cols-3 gap-2 mb-3">
+                                    <button onclick="changeTheme('green')" class="w-full h-8 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg border-2 border-transparent hover:border-white/50 transition-all duration-300" data-theme="green"></button>
+                                    <button onclick="changeTheme('blue')" class="w-full h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg border-2 border-transparent hover:border-white/50 transition-all duration-300" data-theme="blue"></button>
+                                    <button onclick="changeTheme('purple')" class="w-full h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg border-2 border-transparent hover:border-white/50 transition-all duration-300" data-theme="purple"></button>
+                                    <button onclick="changeTheme('orange')" class="w-full h-8 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg border-2 border-transparent hover:border-white/50 transition-all duration-300" data-theme="orange"></button>
+                                    <button onclick="changeTheme('yellow')" class="w-full h-8 bg-gradient-to-r from-yellow-500 to-amber-500 rounded-lg border-2 border-transparent hover:border-white/50 transition-all duration-300" data-theme="yellow"></button>
+                                    <button onclick="changeTheme('pink')" class="w-full h-8 bg-gradient-to-r from-pink-500 to-rose-500 rounded-lg border-2 border-transparent hover:border-white/50 transition-all duration-300" data-theme="pink"></button>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <input type="color" id="customColorPicker" value="#00ff88" class="w-8 h-8 rounded border-2 border-white/20 bg-transparent cursor-pointer">
+                                    <button onclick="useCustomColor()" class="flex-1 px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-sm hover:bg-white/20 transition-colors duration-300">
+                                        Use Custom Color
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Background</label>
+                                <div class="relative mb-3">
+                                    <button type="button" id="backgroundTypeBtn" onclick="toggleDropdown('backgroundType')" class="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-neon-green focus:border-transparent transition-all duration-300 flex items-center justify-between">
+                                        <span id="backgroundTypeText">Gradient</span>
+                                        <svg class="w-4 h-4 transition-transform duration-300" id="backgroundTypeArrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </button>
+                                    <div id="backgroundTypeDropdown" class="absolute top-full left-0 right-0 mt-1 bg-black/90 backdrop-blur-lg border border-white/20 rounded-lg shadow-2xl z-50 hidden">
+                                        <div class="py-1">
+                                            <button type="button" onclick="selectDropdownOption('backgroundType', 'gradient', 'Gradient')" class="w-full px-3 py-2 text-left text-white hover:bg-neon-green hover:text-black transition-all duration-300 flex items-center space-x-2">
+                                                <span class="w-4 h-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded"></span>
+                                                <span>Gradient</span>
+                                            </button>
+                                            <button type="button" onclick="selectDropdownOption('backgroundType', 'solid', 'Solid Color')" class="w-full px-3 py-2 text-left text-white hover:bg-neon-green hover:text-black transition-all duration-300 flex items-center space-x-2">
+                                                <span class="w-4 h-4 bg-gray-600 rounded"></span>
+                                                <span>Solid Color</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Gradient Options -->
+                                <div id="gradientOptions" class="space-y-3">
+                                    <div>
+                                        <label class="block text-xs text-gray-400 mb-1">Gradient Direction</label>
+                                        <div class="relative">
+                                            <button type="button" id="gradientDirectionBtn" onclick="toggleDropdown('gradientDirection')" class="w-full px-2 py-1 bg-white/10 border border-white/20 rounded text-white text-sm focus:outline-none focus:ring-1 focus:ring-neon-green transition-all duration-300 flex items-center justify-between">
+                                                <span id="gradientDirectionText">Diagonal ↘</span>
+                                                <svg class="w-3 h-3 transition-transform duration-300" id="gradientDirectionArrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                </svg>
+                                            </button>
+                                            <div id="gradientDirectionDropdown" class="absolute top-full left-0 right-0 mt-1 bg-black/90 backdrop-blur-lg border border-white/20 rounded-lg shadow-2xl z-50 hidden">
+                                                <div class="py-1">
+                                                    <button type="button" onclick="selectDropdownOption('gradientDirection', '135deg', 'Diagonal ↘')" class="w-full px-2 py-1 text-left text-white text-sm hover:bg-neon-green hover:text-black transition-all duration-300">Diagonal ↘</button>
+                                                    <button type="button" onclick="selectDropdownOption('gradientDirection', '90deg', 'Vertical ↓')" class="w-full px-2 py-1 text-left text-white text-sm hover:bg-neon-green hover:text-black transition-all duration-300">Vertical ↓</button>
+                                                    <button type="button" onclick="selectDropdownOption('gradientDirection', '0deg', 'Horizontal →')" class="w-full px-2 py-1 text-left text-white text-sm hover:bg-neon-green hover:text-black transition-all duration-300">Horizontal →</button>
+                                                    <button type="button" onclick="selectDropdownOption('gradientDirection', '45deg', 'Diagonal ↗')" class="w-full px-2 py-1 text-left text-white text-sm hover:bg-neon-green hover:text-black transition-all duration-300">Diagonal ↗</button>
+                                                    <button type="button" onclick="selectDropdownOption('gradientDirection', '180deg', 'Horizontal ←')" class="w-full px-2 py-1 text-left text-white text-sm hover:bg-neon-green hover:text-black transition-all duration-300">Horizontal ←</button>
+                                                    <button type="button" onclick="selectDropdownOption('gradientDirection', '270deg', 'Vertical ↑')" class="w-full px-2 py-1 text-left text-white text-sm hover:bg-neon-green hover:text-black transition-all duration-300">Vertical ↑</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <div>
+                                            <label class="block text-xs text-gray-400 mb-1">Start Color</label>
+                                            <input type="color" id="gradientStart" value="#000000" onchange="updateGradientStart(this.value)" class="w-full h-8 rounded border border-white/20 bg-transparent cursor-pointer">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs text-gray-400 mb-1">End Color</label>
+                                            <input type="color" id="gradientEnd" value="#111111" onchange="updateGradientEnd(this.value)" class="w-full h-8 rounded border border-white/20 bg-transparent cursor-pointer">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Solid Color Options -->
+                                <div id="solidOptions" class="hidden">
+                                    <label class="block text-xs text-gray-400 mb-1">Background Color</label>
+                                    <input type="color" id="solidColor" value="#000000" onchange="updateSolidColor(this.value)" class="w-full h-8 rounded border border-white/20 bg-transparent cursor-pointer">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Link Style</label>
+                                <div class="flex space-x-2">
+                                    <button onclick="changeLinkStyle('rounded')" id="roundedBtn" class="flex-1 px-3 py-2 bg-neon-green text-black rounded-lg font-medium transition-all duration-300">
+                                        Rounded
+                                    </button>
+                                    <button onclick="changeLinkStyle('square')" id="squareBtn" class="flex-1 px-3 py-2 bg-white/10 border border-white/20 rounded-lg font-medium transition-all duration-300">
+                                        Square
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Text Color</label>
+                                <div class="flex items-center space-x-2 mb-4">
+                                    <input type="color" id="textColorPicker" value="#ffffff" class="w-8 h-8 rounded border-2 border-white/20 bg-transparent cursor-pointer">
+                                    <button onclick="useCustomTextColor()" class="flex-1 px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-sm hover:bg-white/20 transition-colors duration-300">
+                                        Use Custom Text Color
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="flex items-center">
+                                    <input type="checkbox" id="showIcons" checked class="w-4 h-4 text-neon-green bg-white/10 border-white/20 rounded focus:ring-neon-green focus:ring-2">
+                                    <span class="ml-2 text-sm text-gray-300">Show link icons</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Links Section -->
+                    <div class="mb-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="text-lg font-semibold text-neon-green">Links</h2>
+                            <button onclick="addLink()" class="px-3 py-2 bg-neon-green text-black rounded-lg font-medium hover:bg-neon-green/90 transition-colors duration-300">
+                                + Add Link
+                            </button>
+                        </div>
+                        <div id="linksList" class="space-y-3">
+                            <!-- Links will be added here -->
+                        </div>
+                    </div>
+
+                    <!-- Analytics Section -->
+                    <div class="mb-8">
+                        <h2 class="text-lg font-semibold mb-4 text-neon-green">Analytics</h2>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Time Period</label>
+                                <div class="relative">
+                                    <button type="button" id="analyticsFilterBtn" onclick="toggleDropdown('analyticsFilter')" class="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-neon-green focus:border-transparent transition-all duration-300 flex items-center justify-between">
+                                        <span id="analyticsFilterText">Last 7 days</span>
+                                        <svg class="w-4 h-4 transition-transform duration-300" id="analyticsFilterArrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </button>
+                                    <div id="analyticsFilterDropdown" class="absolute top-full left-0 right-0 mt-1 bg-black/90 backdrop-blur-lg border border-white/20 rounded-lg shadow-2xl z-50 hidden">
+                                        <div class="py-1">
+                                            <button type="button" onclick="selectDropdownOption('analyticsFilter', '7', 'Last 7 days')" class="w-full px-3 py-2 text-left text-white hover:bg-neon-green hover:text-black transition-all duration-300">Last 7 days</button>
+                                            <button type="button" onclick="selectDropdownOption('analyticsFilter', '30', 'Last 30 days')" class="w-full px-3 py-2 text-left text-white hover:bg-neon-green hover:text-black transition-all duration-300">Last 30 days</button>
+                                            <button type="button" onclick="selectDropdownOption('analyticsFilter', '90', 'Last 90 days')" class="w-full px-3 py-2 text-left text-white hover:bg-neon-green hover:text-black transition-all duration-300">Last 90 days</button>
+                                            <button type="button" onclick="selectDropdownOption('analyticsFilter', '365', 'Last year')" class="w-full px-3 py-2 text-left text-white hover:bg-neon-green hover:text-black transition-all duration-300">Last year</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Quick Stats -->
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="bg-white/5 border border-white/20 rounded-lg p-3 text-center hover:bg-white/10 transition-all duration-300 group">
+                                    <div id="totalViews" class="text-xl font-bold text-neon-green group-hover:animate-pulse">1,247</div>
+                                    <div class="text-xs text-gray-400">Total Views</div>
+                                </div>
+                                <div class="bg-white/5 border border-white/20 rounded-lg p-3 text-center hover:bg-white/10 transition-all duration-300 group">
+                                    <div id="totalClicks" class="text-xl font-bold text-neon-green group-hover:animate-pulse">342</div>
+                                    <div class="text-xs text-gray-400">Total Clicks</div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white/5 border border-white/20 rounded-lg p-3 text-center hover:bg-white/10 transition-all duration-300 group">
+                                <div id="ctrRate" class="text-xl font-bold text-neon-green group-hover:animate-pulse">27.4%</div>
+                                <div class="text-xs text-gray-400">Click-Through Rate</div>
+                            </div>
+                            
+                            <button onclick="showAnalytics()" class="w-full px-3 py-2 bg-neon-green text-black rounded-lg font-medium hover:bg-neon-green/90 transition-all duration-300 hover:scale-105">
+                                📊 View Detailed Analytics
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Social Media Section -->
+                    <div class="mb-8">
+                        <h2 class="text-lg font-semibold mb-4 text-neon-green">Social Media</h2>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-300">Instagram</span>
+                                <input type="checkbox" class="w-4 h-4 text-neon-green bg-white/10 border-white/20 rounded focus:ring-neon-green focus:ring-2">
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-300">TikTok</span>
+                                <input type="checkbox" class="w-4 h-4 text-neon-green bg-white/10 border-white/20 rounded focus:ring-neon-green focus:ring-2">
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-300">YouTube</span>
+                                <input type="checkbox" class="w-4 h-4 text-neon-green bg-white/10 border-white/20 rounded focus:ring-neon-green focus:ring-2">
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-300">Twitter</span>
+                                <input type="checkbox" class="w-4 h-4 text-neon-green bg-white/10 border-white/20 rounded focus:ring-neon-green focus:ring-2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preview Panel -->
+            <div class="flex-1 flex flex-col">
+                <!-- Top Bar -->
+                <div class="bg-white/5 backdrop-blur-lg border-b border-white/20 p-4">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-xl font-semibold">Live Preview</h2>
+                        <div class="flex space-x-2">
+                            <button class="px-4 py-2 bg-white/10 border border-white/20 rounded-lg hover:bg-white/20 transition-colors duration-300">
+                                📱 Mobile
+                            </button>
+                            <button onclick="shareLink()" class="px-4 py-2 bg-neon-green text-black rounded-lg font-medium hover:bg-neon-green/90 transition-colors duration-300">
+                                🔗 Share Link
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preview Content -->
+                <div class="flex-1 overflow-y-auto p-8 flex justify-center items-start">
+                    <div id="previewPhone" class="w-80 bg-black rounded-3xl p-6 shadow-2xl border border-white/20">
+                        <div id="previewContent" class="space-y-6">
+                            <!-- Profile Section -->
+                            <div class="text-center">
+                                <div id="previewProfilePicContainer" class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden ring-4 ring-neon-green/30 transition-all duration-300">
+                                    <img id="previewProfilePic" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' fill='%23374151'/%3E%3Ctext x='48' y='60' text-anchor='middle' fill='%23ffffff' font-size='32'%3E👤%3C/text%3E%3C/svg%3E" alt="Profile" class="w-full h-full object-cover">
+                                </div>
+                                <h1 id="previewUsername" class="text-2xl font-bold text-neon-green mb-2">@yourname</h1>
+                                <p id="previewBio" class="text-gray-400 text-sm">Your bio will appear here...</p>
+                            </div>
+
+                            <!-- Links Section -->
+                            <div id="previewLinks" class="space-y-3">
+                                <!-- Preview links will appear here -->
+                            </div>
+
+                            <!-- Social Media Icons -->
+                            <div id="previewSocial" class="flex justify-center space-x-4 pt-4">
+                                <!-- Social icons will appear here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms Page -->
+    <div id="termsPage" class="fixed inset-0 bg-black z-50 hidden page-transition">
+        <div class="min-h-screen flex flex-col px-4 relative overflow-hidden">
+            <!-- Animated Background -->
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-neon-green/5 rounded-full blur-3xl animate-pulse-slow"></div>
+            <div class="absolute top-1/4 left-1/4 w-32 h-32 bg-neon-green/3 rounded-full blur-2xl animate-float"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-48 h-48 bg-neon-green/3 rounded-full blur-2xl animate-bounce-slow"></div>
+            
+            <!-- Header -->
+            <div class="py-8 z-10">
+                <div class="max-w-4xl mx-auto flex items-center justify-between">
+                    <h1 class="text-3xl font-black">
+                        tagz<span class="text-neon-green animate-glow">.lol</span>
+                    </h1>
+                    <button onclick="showHome()" class="text-gray-400 hover:text-neon-green transition-colors duration-300">
+                        ← Back to Home
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Content -->
+            <div class="flex-1 z-10 pb-8">
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-white/5 backdrop-blur-lg border border-white/20 rounded-2xl p-8 shadow-2xl">
+                        <h2 class="text-4xl font-bold mb-8 text-neon-green">Terms of Service</h2>
+                        
+                        <div class="space-y-6 text-gray-300 leading-relaxed">
+                            <div>
+                                <h3 class="text-xl font-semibold text-white mb-3">1. Acceptance of Terms</h3>
+                                <p>By accessing and using tagz.lol, you accept and agree to be bound by the terms and provision of this agreement.</p>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-semibold text-white mb-3">2. Use License</h3>
+                                <p>Permission is granted to temporarily use tagz.lol for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:</p>
+                                <ul class="list-disc list-inside mt-2 space-y-1 ml-4">
+                                    <li>modify or copy the materials</li>
+                                    <li>use the materials for any commercial purpose or for any public display</li>
+                                    <li>attempt to reverse engineer any software contained on the website</li>
+                                    <li>remove any copyright or other proprietary notations from the materials</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-semibold text-white mb-3">3. User Content</h3>
+                                <p>You are responsible for all content you upload, post, or otherwise make available through the service. You retain ownership of your content, but grant us a license to use, store, and share it as necessary to provide the service.</p>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-semibold text-white mb-3">4. Prohibited Uses</h3>
+                                <p>You may not use our service:</p>
+                                <ul class="list-disc list-inside mt-2 space-y-1 ml-4">
+                                    <li>for any unlawful purpose or to solicit others to perform unlawful acts</li>
+                                    <li>to violate any international, federal, provincial, or state regulations, rules, laws, or local ordinances</li>
+                                    <li>to infringe upon or violate our intellectual property rights or the intellectual property rights of others</li>
+                                    <li>to harass, abuse, insult, harm, defame, slander, disparage, intimidate, or discriminate</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-semibold text-white mb-3">5. Service Availability</h3>
+                                <p>We strive to maintain high availability but cannot guarantee uninterrupted service. We reserve the right to modify or discontinue the service at any time without notice.</p>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-semibold text-white mb-3">6. Limitation of Liability</h3>
+                                <p>In no event shall tagz.lol or its suppliers be liable for any damages arising out of the use or inability to use the service.</p>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-semibold text-white mb-3">7. Changes to Terms</h3>
+                                <p>We reserve the right to revise these terms at any time without notice. By using this service, you agree to be bound by the current version of these terms.</p>
+                            </div>
+                            
+                            <div class="pt-4 border-t border-white/20">
+                                <p class="text-sm text-gray-400">Last updated: December 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Public Profile Page -->
+<div id="publicProfilePage" class="fixed inset-0 bg-black z-50 hidden page-transition">
+  <div class="min-h-screen flex flex-col items-center px-4 pt-24 relative overflow-y-auto">
+    <button onclick="showHome()" class="absolute top-6 left-6 text-gray-400 hover:text-neon-green transition">
+      ← Home
+    </button>
+
+    <div class="w-full max-w-md z-10 smooth-appear">
+      <div class="text-center mb-8">
+        <div class="w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden ring-4 ring-neon-green/30">
+          <img id="pp_avatar" src="" alt="Avatar" class="w-full h-full object-cover">
+        </div>
+        <h1 id="pp_username" class="text-3xl font-bold text-neon-green">@username</h1>
+        <p id="pp_bio" class="text-gray-300 mt-2"></p>
+      </div>
+
+      <div id="pp_links" class="space-y-3"></div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Privacy Page -->
+    <div id="privacyPage" class="fixed inset-0 bg-black z-50 hidden page-transition">
+        <div class="min-h-screen flex flex-col px-4 relative overflow-hidden">
+            <!-- Animated Background -->
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-neon-green/5 rounded-full blur-3xl animate-pulse-slow"></div>
+            <div class="absolute top-1/4 right-1/4 w-32 h-32 bg-neon-green/3 rounded-full blur-2xl animate-float"></div>
+            <div class="absolute bottom-1/4 left-1/4 w-48 h-48 bg-neon-green/3 rounded-full blur-2xl animate-bounce-slow"></div>
+            
+            <!-- Header -->
+            <div class="py-8 z-10">
+                <div class="max-w-4xl mx-auto flex items-center justify-between">
+                    <h1 class="text-3xl font-black">
+                        tagz<span class="text-neon-green animate-glow">.lol</span>
+                    </h1>
+                    <button onclick="showHome()" class="text-gray-400 hover:text-neon-green transition-colors duration-300">
+                        ← Back to Home
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Content -->
+            <div class="flex-1 z-10 pb-8">
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-white/5 backdrop-blur-lg border border-white/20 rounded-2xl p-8 shadow-2xl">
+                        <h2 class="text-4xl font-bold mb-8 text-neon-green">Privacy Policy</h2>
+                        
+                        <div class="space-y-6 text-gray-300 leading-relaxed">
+                            <div>
+                                <h3 class="text-xl font-semibold text-white mb-3">1. Information We Collect</h3>
+                                <p>We collect information you provide directly to us, such as when you create an account, update your profile, or contact us for support.</p>
+                                <ul class="list-disc list-inside mt-2 space-y-1 ml-4">
+                                    <li>Account information (username, email, password)</li>
+                                    <li>Profile information (bio, profile picture, links)</li>
+                                    <li>Usage data (page views, link clicks, analytics)</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-semibold text-white mb-3">2. How We Use Your Information</h3>
+                                <p>We use the information we collect to:</p>
+                                <ul class="list-disc list-inside mt-2 space-y-1 ml-4">
+                                    <li>Provide, maintain, and improve our services</li>
+                                    <li>Process transactions and send related information</li>
+                                    <li>Send technical notices, updates, and support messages</li>
+                                    <li>Provide analytics and insights about your page performance</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-semibold text-white mb-3">3. Information Sharing</h3>
+                                <p>We do not sell, trade, or otherwise transfer your personal information to third parties. Your profile information is only visible to visitors of your public tagz.lol page as intended by the service.</p>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-semibold text-white mb-3">4. Data Storage</h3>
+                                <p>Your data is stored locally in your browser using localStorage. We do not store your personal information on external servers. This means:</p>
+                                <ul class="list-disc list-inside mt-2 space-y-1 ml-4">
+                                    <li>Your data stays on your device</li>
+                                    <li>Clearing browser data will remove your account</li>
+                                    <li>We cannot recover lost data</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-semibold text-white mb-3">5. Cookies and Tracking</h3>
+                                <p>We use localStorage to remember your login status and preferences. We do not use cookies or third-party tracking services.</p>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-semibold text-white mb-3">6. Data Security</h3>
+                                <p>We implement appropriate security measures to protect your information. However, no method of transmission over the internet is 100% secure.</p>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-semibold text-white mb-3">7. Your Rights</h3>
+                                <p>You have the right to:</p>
+                                <ul class="list-disc list-inside mt-2 space-y-1 ml-4">
+                                    <li>Access and update your personal information</li>
+                                    <li>Delete your account and associated data</li>
+                                    <li>Export your data</li>
+                                    <li>Opt out of communications</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-semibold text-white mb-3">8. Changes to Privacy Policy</h3>
+                                <p>We may update this privacy policy from time to time. We will notify you of any changes by posting the new policy on this page.</p>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-semibold text-white mb-3">9. Contact Us</h3>
+                                <p>If you have any questions about this privacy policy, please contact us through our support channels.</p>
+                            </div>
+                            
+                            <div class="pt-4 border-t border-white/20">
+                                <p class="text-sm text-gray-400">Last updated: December 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 border-t border-white/10">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <p class="text-gray-400">Made with 💻 by <span class="text-neon-green font-semibold">tagz.lol</span></p>
+            </div>
+            <div class="flex space-x-6">
+                <button onclick="showTerms()" class="text-gray-400 hover:text-neon-green transition-colors duration-300">Terms</button>
+                <button onclick="showPrivacy()" class="text-gray-400 hover:text-neon-green transition-colors duration-300">Privacy</button>
+                <a href="#" class="text-gray-400 hover:text-neon-green transition-colors duration-300">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentTheme = 'green';
+        let currentLinkStyle = 'rounded';
+        let links = [];
+        let linkCounter = 0;
+        let userData = {};
+
+        // Theme colors
+        const themes = {
+            green: { primary: '#00ff88', secondary: '#00cc6a' },
+            blue: { primary: '#3b82f6', secondary: '#1d4ed8' },
+            purple: { primary: '#8b5cf6', secondary: '#7c3aed' },
+            orange: { primary: '#f97316', secondary: '#ea580c' },
+            yellow: { primary: '#eab308', secondary: '#ca8a04' },
+            pink: { primary: '#ec4899', secondary: '#db2777' }
+        };
+
+        // Save data to localStorage with username-specific keys
+        function saveUserData() {
+            if (userData.username) {
+                localStorage.setItem(`tagzUserData_${userData.username}`, JSON.stringify(userData));
+                localStorage.setItem(`tagzLinks_${userData.username}`, JSON.stringify(links));
+            }
+        }
+
+        // Load data from localStorage for specific user
+        function loadUserData(username = userData.username) {
+            if (!username) return;
+            
+            const savedUserData = localStorage.getItem(`tagzUserData_${username}`);
+            const savedLinks = localStorage.getItem(`tagzLinks_${username}`);
+            
+            if (savedUserData) {
+                userData = { ...getDefaultUserData(), ...JSON.parse(savedUserData) };
+            } else {
+                userData = getDefaultUserData();
+                userData.username = username;
+            }
+            
+            if (savedLinks) {
+                links = JSON.parse(savedLinks);
+                linkCounter = links.length > 0 ? Math.max(...links.map(l => parseInt(l.id.split('_')[1])), 0) : 0;
+            } else {
+                links = [];
+                linkCounter = 0;
+            }
+        }
+
+        // Get default user data structure
+        function getDefaultUserData() {
+            return {
+                username: '',
+                email: '',
+                bio: '',
+                profilePicture: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' fill='%23374151'/%3E%3Ctext x='48' y='60' text-anchor='middle' fill='%23ffffff' font-size='32'%3E👤%3C/text%3E%3C/svg%3E",
+                theme: 'green',
+                customColor: '#00ff88',
+                textColor: '#ffffff',
+                linkStyle: 'rounded',
+                showIcons: true,
+                backgroundType: 'gradient',
+                backgroundSettings: {
+                    gradientDirection: '135deg',
+                    gradientStart: '#000000',
+                    gradientEnd: '#111111',
+                    solidColor: '#000000'
+                },
+                socialMedia: {
+                    instagram: false,
+                    tiktok: false,
+                    youtube: false,
+                    twitter: false
+                },
+                analytics: {
+                    views: 0,
+                    clicks: 0,
+                    ctr: 0,
+                    dailyViews: [0, 0, 0, 0, 0, 0, 0],
+                    dailyClicks: [0, 0, 0, 0, 0, 0, 0],
+                    topLinks: [],
+                    viewHistory: [],
+                    clickHistory: [],
+                    lastViewDate: null,
+                    createdAt: new Date().toISOString()
+                }
+            };
+        }
+
+        // Show error message
+        function showError(message) {
+            // Remove existing messages
+            const existingMessages = document.querySelectorAll('.error-message, .success-message');
+            existingMessages.forEach(msg => msg.remove());
+            
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-[60] animate-slideInUp';
+            errorDiv.textContent = message;
+            document.body.appendChild(errorDiv);
+            
+            setTimeout(() => {
+                errorDiv.style.opacity = '0';
+                errorDiv.style.transform = 'translateY(-20px)';
+                setTimeout(() => errorDiv.remove(), 300);
+            }, 4000);
+        }
+
+        // Show success message
+        function showSuccess(message) {
+            // Remove existing messages
+            const existingMessages = document.querySelectorAll('.error-message, .success-message');
+            existingMessages.forEach(msg => msg.remove());
+            
+            const successDiv = document.createElement('div');
+            successDiv.className = 'success-message fixed top-4 right-4 bg-neon-green text-black px-6 py-3 rounded-lg shadow-lg z-[60] animate-slideInUp font-semibold';
+            successDiv.textContent = message;
+            document.body.appendChild(successDiv);
+            
+            setTimeout(() => {
+                successDiv.style.opacity = '0';
+                successDiv.style.transform = 'translateY(-20px)';
+                setTimeout(() => successDiv.remove(), 300);
+            }, 3000);
+        }
+
+        // Initialize app
+        function initializeApp() {
+            // Initialize with default data
+            userData = getDefaultUserData();
+            
+            // Check if there's a current session
+            const currentUser = localStorage.getItem('tagzCurrentUser');
+            if (currentUser) {
+                const registeredUsers = JSON.parse(localStorage.getItem('tagzRegisteredUsers') || '{}');
+                if (registeredUsers[currentUser]) {
+                    // Load user-specific data
+                    loadUserData(currentUser);
+                    populateDashboard();
+                } else {
+                    // Clear invalid session
+                    localStorage.removeItem('tagzCurrentUser');
+                }
+            }
+        }
+
+        // Populate dashboard with user data
+        function populateDashboard() {
+            // Set form values
+            document.getElementById('username').value = userData.username;
+            document.getElementById('bio').value = userData.bio;
+            document.getElementById('profilePreview').src = userData.profilePicture;
+            document.getElementById('previewProfilePic').src = userData.profilePicture;
+            document.getElementById('showIcons').checked = userData.showIcons;
+            
+            // Set custom color picker
+            if (document.getElementById('customColorPicker')) {
+                document.getElementById('customColorPicker').value = userData.customColor || '#00ff88';
+            }
+            
+            // Set text color picker
+            if (document.getElementById('textColorPicker')) {
+                document.getElementById('textColorPicker').value = userData.textColor || '#ffffff';
+            }
+            
+            // Set background type dropdown
+            if (document.getElementById('backgroundTypeText')) {
+                document.getElementById('backgroundTypeText').textContent = userData.backgroundType === 'gradient' ? 'Gradient' : 'Solid Color';
+            }
+            
+            // Set gradient direction dropdown
+            if (document.getElementById('gradientDirectionText') && userData.backgroundSettings) {
+                const directionMap = {
+                    '135deg': 'Diagonal ↘',
+                    '90deg': 'Vertical ↓',
+                    '0deg': 'Horizontal →',
+                    '45deg': 'Diagonal ↗',
+                    '180deg': 'Horizontal ←',
+                    '270deg': 'Vertical ↑'
+                };
+                document.getElementById('gradientDirectionText').textContent = directionMap[userData.backgroundSettings.gradientDirection] || 'Diagonal ↘';
+            }
+            
+            // Set background settings
+            if (userData.backgroundSettings) {
+                if (document.getElementById('gradientStart')) {
+                    document.getElementById('gradientStart').value = userData.backgroundSettings.gradientStart;
+                }
+                if (document.getElementById('gradientEnd')) {
+                    document.getElementById('gradientEnd').value = userData.backgroundSettings.gradientEnd;
+                }
+                if (document.getElementById('solidColor')) {
+                    document.getElementById('solidColor').value = userData.backgroundSettings.solidColor;
+                }
+            }
+            
+            // Set theme
+            changeTheme(userData.theme);
+            changeLinkStyle(userData.linkStyle);
+            updateBackgroundOptions();
+            updateBackgroundPreview();
+            updateTextColors();
+            
+            // Update preview
+            document.getElementById('previewUsername').textContent = '@' + userData.username;
+            document.getElementById('previewBio').textContent = userData.bio || 'Your bio will appear here...';
+            
+            // Populate links
+            document.getElementById('linksList').innerHTML = '';
+            links.forEach(link => {
+                addLinkToSidebar(link);
+            });
+            
+            // Update analytics
+            updateAnalytics();
+            updatePreview();
+        }
+
+        function showSignUp() {
+            document.getElementById('signUpPage').classList.remove('hidden');
+            document.getElementById('logInPage').classList.add('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function showLogIn() {
+            document.getElementById('logInPage').classList.remove('hidden');
+            document.getElementById('signUpPage').classList.add('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function showHome() {
+            document.getElementById('signUpPage').classList.add('hidden');
+            document.getElementById('logInPage').classList.add('hidden');
+            document.getElementById('dashboard').classList.add('hidden');
+            document.getElementById('analyticsPage').classList.add('hidden');
+            document.getElementById('notFoundPage').classList.add('hidden');
+            document.getElementById('termsPage').classList.add('hidden');
+            document.getElementById('privacyPage').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function showTerms() {
+            document.getElementById('termsPage').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function showPrivacy() {
+            document.getElementById('privacyPage').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function showAnalytics() {
+            document.getElementById('dashboard').classList.add('hidden');
+            document.getElementById('analyticsPage').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            
+            // Initialize analytics data when page opens
+            setTimeout(() => {
+                updateAnalyticsData();
+            }, 100);
+        }
+
+        function show404() {
+            document.getElementById('notFoundPage').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function showDashboard(username) {
+            document.getElementById('signUpPage').classList.add('hidden');
+            document.getElementById('logInPage').classList.add('hidden');
+            document.getElementById('dashboard').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            
+            // Set username
+            document.getElementById('username').value = username;
+            document.getElementById('previewUsername').textContent = '@' + username;
+            
+            // Track page view
+            trackPageView();
+            
+            // Initialize with sample links
+            if (links.length === 0) {
+                addLink('My Website', 'https://yourwebsite.com', '🌐');
+                addLink('Instagram', 'https://instagram.com/yourname', '📱');
+            }
+            
+            // Update analytics display
+            updateAnalytics();
+        }
+
+        function logout() {
+            showHome();
+        }
+
+        // Store registered users
+        let registeredUsers = JSON.parse(localStorage.getItem('tagzRegisteredUsers') || '{}');
+
+        // Handle form submissions
+        document.getElementById('signUpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('signUpUsername').value.toLowerCase().trim();
+            const email = document.getElementById('signUpEmail').value.toLowerCase().trim();
+            const password = document.getElementById('signUpPassword').value;
+            
+            // Validation
+            if (username.length < 3) {
+                showError('Username must be at least 3 characters long');
+                return;
+            }
+            
+            if (!email.includes('@') || !email.includes('.')) {
+                showError('Please enter a valid email address');
+                return;
+            }
+            
+            if (password.length < 6) {
+                showError('Password must be at least 6 characters long');
+                return;
+            }
+            
+            // Check if username or email already exists
+            if (registeredUsers[username] || Object.values(registeredUsers).some(user => user.email === email)) {
+                showError('Username or email already exists');
+                return;
+            }
+            
+            // Register new user
+            registeredUsers[username] = {
+                email: email,
+                password: password, // In real app, this would be hashed
+                createdAt: new Date().toISOString()
+            };
+            
+            localStorage.setItem('tagzRegisteredUsers', JSON.stringify(registeredUsers));
+            
+            // Initialize fresh user data
+            userData = getDefaultUserData();
+            userData.username = username;
+            userData.email = email;
+            
+            // Add default links for new users
+            links = [
+                { id: 'link_1', title: 'My Website', url: 'https://yourwebsite.com', icon: '🌐', enabled: true },
+                { id: 'link_2', title: 'Instagram', url: 'https://instagram.com/' + username, icon: '📱', enabled: true }
+            ];
+            linkCounter = 2;
+            
+            // Set current user session
+            localStorage.setItem('tagzCurrentUser', username);
+            saveUserData();
+            showSuccess('Account created successfully!');
+            setTimeout(() => showDashboard(username), 1500);
+        });
+
+        document.getElementById('logInForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailOrUsername = document.getElementById('logInEmail').value.toLowerCase().trim();
+            const password = document.getElementById('logInPassword').value;
+            
+            // Find user by username or email
+            let foundUser = null;
+            let foundUsername = null;
+            
+            // Check if it's a username
+            if (registeredUsers[emailOrUsername]) {
+                foundUser = registeredUsers[emailOrUsername];
+                foundUsername = emailOrUsername;
+            } else {
+                // Check if it's an email
+                for (const [username, user] of Object.entries(registeredUsers)) {
+                    if (user.email === emailOrUsername) {
+                        foundUser = user;
+                        foundUsername = username;
+                        break;
+                    }
+                }
+            }
+            
+            if (!foundUser) {
+                showError('Account not found. Please sign up first.');
+                return;
+            }
+            
+            if (foundUser.password !== password) {
+                showError('Incorrect password. Please try again.');
+                return;
+            }
+            
+            // Load user-specific data
+            loadUserData(foundUsername);
+            userData.email = foundUser.email;
+            
+            // Set current user session
+            localStorage.setItem('tagzCurrentUser', foundUsername);
+            
+            showSuccess('Welcome back!');
+            setTimeout(() => showDashboard(foundUsername), 1500);
+        });
+
+        // Profile picture upload
+        document.getElementById('profilePicture').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    userData.profilePicture = e.target.result;
+                    document.getElementById('profilePreview').src = e.target.result;
+                    document.getElementById('previewProfilePic').src = e.target.result;
+                    saveUserData();
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Username and bio updates
+        document.getElementById('username').addEventListener('input', function(e) {
+            userData.username = e.target.value;
+            document.getElementById('previewUsername').textContent = '@' + e.target.value;
+            saveUserData();
+        });
+
+        document.getElementById('bio').addEventListener('input', function(e) {
+            userData.bio = e.target.value;
+            document.getElementById('previewBio').textContent = e.target.value || 'Your bio will appear here...';
+            saveUserData();
+        });
+
+        // Custom dropdown functions
+        function toggleDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId + 'Dropdown');
+            const arrow = document.getElementById(dropdownId + 'Arrow');
+            const isHidden = dropdown.classList.contains('hidden');
+            
+            // Close all other dropdowns
+            document.querySelectorAll('[id$="Dropdown"]').forEach(dd => {
+                if (dd.id !== dropdownId + 'Dropdown') {
+                    dd.classList.add('hidden');
+                    const ddArrow = document.getElementById(dd.id.replace('Dropdown', 'Arrow'));
+                    if (ddArrow) ddArrow.style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            if (isHidden) {
+                dropdown.classList.remove('hidden');
+                arrow.style.transform = 'rotate(180deg)';
+            } else {
+                dropdown.classList.add('hidden');
+                arrow.style.transform = 'rotate(0deg)';
+            }
+        }
+        
+        function selectDropdownOption(dropdownId, value, displayText) {
+            const textElement = document.getElementById(dropdownId + 'Text');
+            const dropdown = document.getElementById(dropdownId + 'Dropdown');
+            const arrow = document.getElementById(dropdownId + 'Arrow');
+            
+            textElement.textContent = displayText;
+            dropdown.classList.add('hidden');
+            arrow.style.transform = 'rotate(0deg)';
+            
+            // Handle specific dropdown actions
+            if (dropdownId === 'backgroundType') {
+                userData.backgroundType = value;
+                updateBackgroundOptions();
+                updateBackgroundPreview();
+            } else if (dropdownId === 'gradientDirection') {
+                userData.backgroundSettings.gradientDirection = value;
+                updateBackgroundPreview();
+            } else if (dropdownId === 'analyticsTimeFilter') {
+                updateAnalyticsData();
+            } else if (dropdownId === 'analyticsFilter') {
+                updateAnalytics();
+            }
+        }
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('[id$="Btn"]') && !e.target.closest('[id$="Dropdown"]')) {
+                document.querySelectorAll('[id$="Dropdown"]').forEach(dropdown => {
+                    dropdown.classList.add('hidden');
+                    const dropdownId = dropdown.id.replace('Dropdown', '');
+                    const arrow = document.getElementById(dropdownId + 'Arrow');
+                    if (arrow) arrow.style.transform = 'rotate(0deg)';
+                });
+            }
+        });
+
+        // Custom color function
+        function useCustomColor() {
+            const customColor = document.getElementById('customColorPicker').value;
+            userData.customColor = customColor;
+            userData.theme = 'custom';
+            currentTheme = 'custom';
+            
+            // Clear all theme button borders
+            document.querySelectorAll('[data-theme]').forEach(btn => {
+                btn.classList.remove('border-white');
+                btn.classList.add('border-transparent');
+            });
+            
+            // Update CSS custom properties for custom color
+            const lighterColor = adjustColorBrightness(customColor, 20);
+            document.documentElement.style.setProperty('--theme-primary', customColor);
+            document.documentElement.style.setProperty('--theme-secondary', lighterColor);
+            
+            // Update preview
+            updatePreview();
+            saveUserData();
+        }
+        
+        // Custom text color function
+        function useCustomTextColor() {
+            const textColor = document.getElementById('textColorPicker').value;
+            userData.textColor = textColor;
+            
+            // Update preview text colors
+            updateTextColors();
+            saveUserData();
+        }
+        
+        function updateTextColors() {
+            const textColor = userData.textColor || '#ffffff';
+            const previewBio = document.getElementById('previewBio');
+            
+            if (previewBio) {
+                previewBio.style.color = textColor;
+            }
+        }
+
+        // Helper function to adjust color brightness
+        function adjustColorBrightness(hex, percent) {
+            const num = parseInt(hex.replace("#", ""), 16);
+            const amt = Math.round(2.55 * percent);
+            const R = (num >> 16) + amt;
+            const G = (num >> 8 & 0x00FF) + amt;
+            const B = (num & 0x0000FF) + amt;
+            return "#" + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+                (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+                (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
+        }
+
+        // Background options toggle
+        function updateBackgroundOptions() {
+            const gradientOptions = document.getElementById('gradientOptions');
+            const solidOptions = document.getElementById('solidOptions');
+            
+            if (userData.backgroundType === 'gradient') {
+                gradientOptions.classList.remove('hidden');
+                solidOptions.classList.add('hidden');
+            } else {
+                gradientOptions.classList.add('hidden');
+                solidOptions.classList.remove('hidden');
+            }
+            
+            saveUserData();
+        }
+
+        // Update background preview
+        function updateBackgroundPreview() {
+            const previewPhone = document.getElementById('previewPhone');
+            
+            if (!userData.backgroundSettings) {
+                userData.backgroundSettings = {
+                    gradientDirection: '135deg',
+                    gradientStart: '#000000',
+                    gradientEnd: '#111111',
+                    solidColor: '#000000'
+                };
+            }
+            
+            if (userData.backgroundType === 'gradient') {
+                const direction = userData.backgroundSettings.gradientDirection;
+                const startColor = userData.backgroundSettings.gradientStart;
+                const endColor = userData.backgroundSettings.gradientEnd;
+                
+                previewPhone.style.background = `linear-gradient(${direction}, ${startColor}, ${endColor})`;
+            } else {
+                const solidColor = userData.backgroundSettings.solidColor;
+                previewPhone.style.background = solidColor;
+            }
+            
+            saveUserData();
+        }
+        
+        // Individual color update functions
+        function updateGradientStart(color) {
+            userData.backgroundSettings.gradientStart = color;
+            updateBackgroundPreview();
+        }
+        
+        function updateGradientEnd(color) {
+            userData.backgroundSettings.gradientEnd = color;
+            updateBackgroundPreview();
+        }
+        
+        function updateSolidColor(color) {
+            userData.backgroundSettings.solidColor = color;
+            updateBackgroundPreview();
+        }
+
+        // Theme change
+        function changeTheme(theme) {
+            currentTheme = theme;
+            userData.theme = theme;
+            
+            let color;
+            if (theme === 'custom') {
+                color = {
+                    primary: userData.customColor || '#00ff88',
+                    secondary: adjustColorBrightness(userData.customColor || '#00ff88', 20)
+                };
+            } else {
+                color = themes[theme];
+            }
+            
+            // Update theme buttons
+            document.querySelectorAll('[data-theme]').forEach(btn => {
+                btn.classList.remove('border-white');
+                btn.classList.add('border-transparent');
+            });
+            
+            if (theme !== 'custom') {
+                const themeBtn = document.querySelector(`[data-theme="${theme}"]`);
+                if (themeBtn) {
+                    themeBtn.classList.remove('border-transparent');
+                    themeBtn.classList.add('border-white');
+                }
+            }
+            
+            // Update CSS custom properties for theme
+            document.documentElement.style.setProperty('--theme-primary', color.primary);
+            document.documentElement.style.setProperty('--theme-secondary', color.secondary);
+            
+            // Update profile picture border color
+            const profileContainer = document.getElementById('previewProfilePicContainer');
+            if (profileContainer) {
+                profileContainer.style.borderColor = color.primary + '4D'; // 30% opacity
+                profileContainer.className = profileContainer.className.replace(/ring-\w+-\d+\/\d+/, '');
+                profileContainer.style.boxShadow = `0 0 0 4px ${color.primary}4D`;
+            }
+            
+            // Update preview
+            updatePreview();
+            saveUserData();
+        }
+
+        // Link style change
+        function changeLinkStyle(style) {
+            currentLinkStyle = style;
+            userData.linkStyle = style;
+            
+            if (style === 'rounded') {
+                document.getElementById('roundedBtn').className = 'flex-1 px-3 py-2 bg-neon-green text-black rounded-lg font-medium transition-all duration-300';
+                document.getElementById('squareBtn').className = 'flex-1 px-3 py-2 bg-white/10 border border-white/20 rounded-lg font-medium transition-all duration-300';
+            } else {
+                document.getElementById('squareBtn').className = 'flex-1 px-3 py-2 bg-neon-green text-black rounded-lg font-medium transition-all duration-300';
+                document.getElementById('roundedBtn').className = 'flex-1 px-3 py-2 bg-white/10 border border-white/20 rounded-lg font-medium transition-all duration-300';
+            }
+            
+            updatePreview();
+            saveUserData();
+        }
+
+        // Add link to sidebar
+        function addLinkToSidebar(link) {
+            const linkElement = document.createElement('div');
+            linkElement.className = 'bg-white/5 border border-white/20 rounded-lg p-3';
+            linkElement.setAttribute('data-link-id', link.id);
+            linkElement.innerHTML = `
+                <div class="flex items-center justify-between mb-2">
+                    <input type="text" value="${link.title}" onchange="updateLink('${link.id}', 'title', this.value)" class="flex-1 bg-transparent text-white text-sm font-medium focus:outline-none">
+                    <div class="flex items-center space-x-2">
+                        <button onclick="toggleLink('${link.id}')" class="text-neon-green hover:text-neon-green/70 transition-colors duration-300" title="${link.enabled ? 'Hide link' : 'Show link'}">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${link.enabled ? 'M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z' : 'M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21'}"></path>
+                            </svg>
+                        </button>
+                        <button onclick="removeLink('${link.id}')" class="text-red-400 hover:text-red-300 transition-colors duration-300" title="Delete link">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-2 mb-2">
+                    <input type="text" value="${link.icon}" onchange="updateLink('${link.id}', 'icon', this.value)" placeholder="🔗" class="w-12 px-2 py-1 bg-white/10 border border-white/20 rounded text-white text-xs text-center focus:outline-none focus:ring-1 focus:ring-neon-green focus:border-transparent transition-all duration-300">
+                    <input type="url" value="${link.url}" onchange="updateLink('${link.id}', 'url', this.value)" placeholder="https://example.com" class="flex-1 px-2 py-1 bg-white/10 border border-white/20 rounded text-white text-xs placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-neon-green focus:border-transparent transition-all duration-300">
+                </div>
+            `;
+            
+            document.getElementById('linksList').appendChild(linkElement);
+        }
+
+        // Add link
+        function addLink(title = '', url = '', icon = '🔗') {
+            linkCounter++;
+            const linkId = 'link_' + linkCounter;
+            
+            const link = {
+                id: linkId,
+                title: title || 'New Link',
+                url: url || 'https://example.com',
+                icon: icon,
+                enabled: true
+            };
+            
+            links.push(link);
+            addLinkToSidebar(link);
+            updatePreview();
+            saveUserData();
+        }
+
+        // Update link
+        function updateLink(linkId, field, value) {
+            const link = links.find(l => l.id === linkId);
+            if (link) {
+                link[field] = value;
+                updatePreview();
+                saveUserData();
+                
+                // Update analytics if it's a title change
+                if (field === 'title') {
+                    const topLink = userData.analytics.topLinks.find(tl => tl.title === link.title);
+                    if (topLink) {
+                        topLink.title = value;
+                    }
+                }
+            }
+        }
+
+        // Toggle link
+        function toggleLink(linkId) {
+            const link = links.find(l => l.id === linkId);
+            if (link) {
+                link.enabled = !link.enabled;
+                
+                // Update the eye icon
+                const linkElement = document.querySelector(`[data-link-id="${linkId}"]`);
+                const eyeButton = linkElement.querySelector('button[onclick*="toggleLink"]');
+                const eyeIcon = eyeButton.querySelector('svg path');
+                
+                if (link.enabled) {
+                    eyeIcon.setAttribute('d', 'M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z');
+                    eyeButton.title = 'Hide link';
+                } else {
+                    eyeIcon.setAttribute('d', 'M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21');
+                    eyeButton.title = 'Show link';
+                }
+                
+                updatePreview();
+                saveUserData();
+            }
+        }
+
+        // Remove link
+        function removeLink(linkId) {
+            links = links.filter(l => l.id !== linkId);
+            const linkElement = document.querySelector(`[data-link-id="${linkId}"]`);
+            if (linkElement) {
+                linkElement.remove();
+            }
+            updatePreview();
+            saveUserData();
+        }
+
+        // Update preview
+        function updatePreview() {
+            const previewLinks = document.getElementById('previewLinks');
+            const showIcons = document.getElementById('showIcons') ? document.getElementById('showIcons').checked : userData.showIcons;
+            
+            let color;
+            if (currentTheme === 'custom') {
+                color = {
+                    primary: userData.customColor || '#00ff88',
+                    secondary: adjustColorBrightness(userData.customColor || '#00ff88', 20)
+                };
+            } else {
+                color = themes[currentTheme];
+            }
+            
+            previewLinks.innerHTML = '';
+            
+            links.filter(link => link.enabled).forEach(link => {
+                const linkElement = document.createElement('button');
+                const roundedClass = currentLinkStyle === 'rounded' ? 'rounded-xl' : 'rounded-md';
+                
+                linkElement.className = `w-full py-3 px-4 bg-white/10 backdrop-blur-sm border border-white/20 ${roundedClass} text-white font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2`;
+                linkElement.style.cssText = `
+                    border-color: ${color.primary}33;
+                    background: linear-gradient(135deg, ${color.primary}15, ${color.secondary}15);
+                `;
+                
+                // Add click functionality
+                linkElement.onclick = function() {
+                    // Track real analytics
+                    trackLinkClick(link.title, link.url);
+                    
+                    // Update analytics display
+                    updateAnalytics();
+                    
+                    // Open link
+                    window.open(link.url, '_blank');
+                };
+                
+                linkElement.onmouseover = function() {
+                    this.style.backgroundColor = color.primary;
+                    this.style.color = '#000';
+                    this.style.borderColor = color.primary;
+                };
+                linkElement.onmouseout = function() {
+                    this.style.backgroundColor = '';
+                    this.style.color = '#fff';
+                    this.style.borderColor = color.primary + '33';
+                };
+                
+                linkElement.innerHTML = `
+                    ${showIcons ? `<span>${link.icon}</span>` : ''}
+                    <span>${link.title}</span>
+                `;
+                
+                previewLinks.appendChild(linkElement);
+            });
+            
+            // Update username color
+            const usernameElement = document.getElementById('previewUsername');
+            if (usernameElement) {
+                usernameElement.style.color = color.primary;
+            }
+        }
+
+        // Show icons toggle
+        function setupEventListeners() {
+            const showIconsCheckbox = document.getElementById('showIcons');
+            if (showIconsCheckbox) {
+                showIconsCheckbox.addEventListener('change', function(e) {
+                    userData.showIcons = e.target.checked;
+                    updatePreview();
+                    saveUserData();
+                });
+            }
+            
+            // Background type change
+            const backgroundSelect = document.getElementById('backgroundType');
+            if (backgroundSelect) {
+                backgroundSelect.addEventListener('change', function(e) {
+                    userData.backgroundType = e.target.value;
+                    const previewPhone = document.getElementById('previewPhone');
+                    if (e.target.value === 'gradient') {
+                        previewPhone.style.background = 'linear-gradient(135deg, #000 0%, #111 100%)';
+                    } else {
+                        previewPhone.style.background = '#000';
+                    }
+                    saveUserData();
+                });
+            }
+        }
+
+        // Scroll animations
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all elements with animate-on-scroll class
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Initialize scroll animations when page loads
+        document.addEventListener('DOMContentLoaded', initScrollAnimations);
+
+        // Smooth page transitions
+        function showPageWithTransition(pageId) {
+            const page = document.getElementById(pageId);
+            page.classList.remove('hidden');
+            page.style.opacity = '0';
+            page.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                page.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                page.style.opacity = '1';
+                page.style.transform = 'scale(1)';
+            }, 10);
+        }
+
+        // Enhanced button hover effects
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px) scale(1.02)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Real analytics tracking functions
+        function trackPageView() {
+            const today = new Date().toDateString();
+            
+            // Initialize analytics if needed
+            if (!userData.analytics.viewHistory) {
+                userData.analytics.viewHistory = [];
+                userData.analytics.clickHistory = [];
+                userData.analytics.lastViewDate = null;
+            }
+            
+            // Only count one view per day to prevent spam
+            if (userData.analytics.lastViewDate !== today) {
+                userData.analytics.views++;
+                userData.analytics.lastViewDate = today;
+                
+                // Add to view history
+                userData.analytics.viewHistory.push({
+                    date: today,
+                    timestamp: new Date().toISOString()
+                });
+                
+                // Update daily views (last 7 days)
+                updateDailyStats();
+                saveUserData();
+            }
+        }
+        
+        function trackLinkClick(linkTitle, linkUrl) {
+            const today = new Date().toDateString();
+            
+            // Increment total clicks
+            userData.analytics.clicks++;
+            
+            // Add to click history
+            userData.analytics.clickHistory.push({
+                date: today,
+                timestamp: new Date().toISOString(),
+                linkTitle: linkTitle,
+                linkUrl: linkUrl
+            });
+            
+            // Update or add to top links
+            let topLink = userData.analytics.topLinks.find(tl => tl.title === linkTitle);
+            if (topLink) {
+                topLink.clicks++;
+                topLink.url = linkUrl; // Update URL in case it changed
+            } else {
+                // Find the link to get its icon
+                const link = links.find(l => l.title === linkTitle);
+                userData.analytics.topLinks.push({
+                    title: linkTitle,
+                    url: linkUrl,
+                    clicks: 1,
+                    ctr: 0,
+                    icon: link ? link.icon : '🔗'
+                });
+            }
+            
+            // Update daily stats and CTR
+            updateDailyStats();
+            calculateCTR();
+            saveUserData();
+        }
+        
+        function updateDailyStats() {
+            const last7Days = [];
+            const today = new Date();
+            
+            // Generate last 7 days
+            for (let i = 6; i >= 0; i--) {
+                const date = new Date(today);
+                date.setDate(date.getDate() - i);
+                last7Days.push(date.toDateString());
+            }
+            
+            // Count views for each day
+            userData.analytics.dailyViews = last7Days.map(date => {
+                return userData.analytics.viewHistory.filter(view => view.date === date).length;
+            });
+            
+            // Count clicks for each day
+            userData.analytics.dailyClicks = last7Days.map(date => {
+                return userData.analytics.clickHistory.filter(click => click.date === date).length;
+            });
+        }
+        
+        function calculateCTR() {
+            if (userData.analytics.views > 0) {
+                userData.analytics.ctr = ((userData.analytics.clicks / userData.analytics.views) * 100);
+                
+                // Update CTR for each top link
+                userData.analytics.topLinks.forEach(link => {
+                    if (userData.analytics.views > 0) {
+                        link.ctr = ((link.clicks / userData.analytics.views) * 100);
+                    }
+                });
+            }
+        }
+        
+        function getAnalyticsForPeriod(days) {
+            const cutoffDate = new Date();
+            cutoffDate.setDate(cutoffDate.getDate() - days);
+            
+            // Filter views and clicks for the period
+            const periodViews = userData.analytics.viewHistory.filter(view => 
+                new Date(view.timestamp) >= cutoffDate
+            ).length;
+            
+            const periodClicks = userData.analytics.clickHistory.filter(click => 
+                new Date(click.timestamp) >= cutoffDate
+            ).length;
+            
+            const periodCTR = periodViews > 0 ? ((periodClicks / periodViews) * 100) : 0;
+            
+            return {
+                views: periodViews,
+                clicks: periodClicks,
+                ctr: periodCTR
+            };
+        }
+
+        // Analytics functions
+        function updateAnalytics() {
+            const days = document.getElementById('analyticsFilter') ? document.getElementById('analyticsFilter').value : 7;
+            const analytics = getAnalyticsForPeriod(parseInt(days));
+            
+            const totalViewsElement = document.getElementById('totalViews');
+            const totalClicksElement = document.getElementById('totalClicks');
+            const ctrRateElement = document.getElementById('ctrRate');
+            
+            if (totalViewsElement) totalViewsElement.textContent = analytics.views.toLocaleString();
+            if (totalClicksElement) totalClicksElement.textContent = analytics.clicks.toLocaleString();
+            if (ctrRateElement) ctrRateElement.textContent = analytics.ctr.toFixed(1) + '%';
+        }
+
+        function updateAnalyticsData() {
+            const days = parseInt(document.getElementById('analyticsTimeFilter').value);
+            const analytics = getAnalyticsForPeriod(days);
+            
+            document.getElementById('analyticsViews').textContent = analytics.views.toLocaleString();
+            document.getElementById('analyticsClicks').textContent = analytics.clicks.toLocaleString();
+            document.getElementById('analyticsCTR').textContent = analytics.ctr.toFixed(1) + '%';
+            
+            // Update percentage changes
+            updatePercentageChanges(days);
+            
+            // Update top links with real data
+            updateTopLinksDisplay();
+            
+            // Update and animate the charts with real data
+            updateChartsWithRealData(days);
+        }
+
+        function updatePercentageChanges(days) {
+            // Calculate percentage changes compared to previous period
+            const currentPeriod = getAnalyticsForPeriod(days);
+            const previousPeriod = getAnalyticsForPreviousPeriod(days);
+            
+            const viewsChange = calculatePercentageChange(previousPeriod.views, currentPeriod.views);
+            const clicksChange = calculatePercentageChange(previousPeriod.clicks, currentPeriod.clicks);
+            const ctrChange = calculatePercentageChange(previousPeriod.ctr, currentPeriod.ctr);
+            
+            // Update the percentage badges
+            updatePercentageBadge('views', viewsChange);
+            updatePercentageBadge('clicks', clicksChange);
+            updatePercentageBadge('ctr', ctrChange);
+        }
+
+        function getAnalyticsForPreviousPeriod(days) {
+            const startDate = new Date();
+            startDate.setDate(startDate.getDate() - (days * 2));
+            const endDate = new Date();
+            endDate.setDate(endDate.getDate() - days);
+            
+            const periodViews = userData.analytics.viewHistory.filter(view => {
+                const viewDate = new Date(view.timestamp);
+                return viewDate >= startDate && viewDate < endDate;
+            }).length;
+            
+            const periodClicks = userData.analytics.clickHistory.filter(click => {
+                const clickDate = new Date(click.timestamp);
+                return clickDate >= startDate && clickDate < endDate;
+            }).length;
+            
+            const periodCTR = periodViews > 0 ? ((periodClicks / periodViews) * 100) : 0;
+            
+            return {
+                views: periodViews,
+                clicks: periodClicks,
+                ctr: periodCTR
+            };
+        }
+
+        function calculatePercentageChange(oldValue, newValue) {
+            if (oldValue === 0) return newValue > 0 ? 100 : 0;
+            return ((newValue - oldValue) / oldValue) * 100;
+        }
+
+        function updatePercentageBadge(type, change) {
+            const badges = {
+                views: document.querySelector('#analyticsPage .text-green-400'),
+                clicks: document.querySelector('#analyticsPage .text-blue-400'),
+                ctr: document.querySelector('#analyticsPage .text-purple-400')
+            };
+            
+            const badge = badges[type];
+            if (badge) {
+                const isPositive = change >= 0;
+                const color = isPositive ? 'green' : 'red';
+                const sign = isPositive ? '+' : '';
+                
+                badge.textContent = `${sign}${change.toFixed(1)}%`;
+                badge.className = `text-sm text-${color}-400 bg-${color}-400/20 px-2 py-1 rounded-full`;
+            }
+        }
+
+        function updateChartsWithRealData(days) {
+            // Generate date range for the selected period
+            const dateRange = generateDateRange(days);
+            
+            // Get views and clicks data for each day in the range
+            const viewsData = dateRange.map(date => {
+                return userData.analytics.viewHistory.filter(view => 
+                    new Date(view.timestamp).toDateString() === date
+                ).length;
+            });
+            
+            const clicksData = dateRange.map(date => {
+                return userData.analytics.clickHistory.filter(click => 
+                    new Date(click.timestamp).toDateString() === date
+                ).length;
+            });
+            
+            // Update views chart
+            updateChart('views', viewsData, dateRange);
+            
+            // Update clicks chart  
+            updateChart('clicks', clicksData, dateRange);
+        }
+
+        function generateDateRange(days) {
+            const dates = [];
+            const today = new Date();
+            
+            for (let i = days - 1; i >= 0; i--) {
+                const date = new Date(today);
+                date.setDate(date.getDate() - i);
+                dates.push(date.toDateString());
+            }
+            
+            return dates;
+        }
+
+        function updateChart(type, data, dateRange) {
+            const chartContainer = document.querySelector(`#analyticsPage .text-${type === 'views' ? 'neon-green' : 'blue-400'}`).closest('.bg-white\\/5');
+            const barsContainer = chartContainer.querySelector('.flex.items-end');
+            
+            if (!barsContainer) return;
+            
+            // Clear existing bars
+            barsContainer.innerHTML = '';
+            
+            const maxValue = Math.max(...data, 1);
+            const colors = {
+                views: '#00ff88',
+                clicks: '#3b82f6'
+            };
+            
+            // Create new bars with real data
+            data.forEach((value, index) => {
+                const barContainer = document.createElement('div');
+                barContainer.className = 'flex flex-col items-center space-y-2';
+                
+                const height = Math.max(10, (value / maxValue) * 140);
+                const date = new Date(dateRange[index]);
+                const dayLabel = days <= 7 ? 
+                    date.toLocaleDateString('en', { weekday: 'short' }) :
+                    date.toLocaleDateString('en', { month: 'short', day: 'numeric' });
+                
+                barContainer.innerHTML = `
+                    <div class="w-8 rounded-t-lg transition-all duration-500 hover:opacity-80 relative group" 
+                         style="height: ${height}px; background-color: ${colors[type]};">
+                        <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                            ${value} ${type === 'views' ? 'views' : 'clicks'}
+                        </div>
+                    </div>
+                    <span class="text-xs text-gray-400">${dayLabel}</span>
+                `;
+                
+                barsContainer.appendChild(barContainer);
+                
+                // Animate bar height
+                const bar = barContainer.querySelector('.w-8');
+                bar.style.height = '0px';
+                setTimeout(() => {
+                    bar.style.height = height + 'px';
+                }, index * 100);
+            });
+        }
+
+        function updateTopLinksDisplay() {
+            const topLinksContainer = document.querySelector('#analyticsPage .space-y-4');
+            if (!topLinksContainer) return;
+            
+            topLinksContainer.innerHTML = '';
+            
+            // Sort top links by clicks (descending)
+            const sortedLinks = [...userData.analytics.topLinks].sort((a, b) => b.clicks - a.clicks);
+            
+            if (sortedLinks.length === 0) {
+                const noDataElement = document.createElement('div');
+                noDataElement.className = 'text-center py-8 text-gray-400';
+                noDataElement.innerHTML = `
+                    <div class="text-4xl mb-4">📊</div>
+                    <div class="text-lg mb-2">No link clicks yet</div>
+                    <div class="text-sm">Start sharing your page to see analytics!</div>
+                `;
+                topLinksContainer.appendChild(noDataElement);
+                return;
+            }
+            
+            sortedLinks.forEach(link => {
+                const linkElement = document.createElement('div');
+                linkElement.className = 'flex items-center justify-between p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group';
+                linkElement.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <span class="text-2xl">${link.icon}</span>
+                        <div>
+                            <div class="font-medium text-white group-hover:text-neon-green transition-colors duration-300">${link.title}</div>
+                            <div class="text-sm text-gray-400">${link.url}</div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="font-bold text-neon-green">${link.clicks} clicks</div>
+                        <div class="text-sm text-gray-400">${link.ctr.toFixed(1)}% CTR</div>
+                    </div>
+                `;
+                topLinksContainer.appendChild(linkElement);
+            });
+        }
+
+
+
+        // Share link functionality
+        function shareLink() {
+            const username = userData.username;
+            const shareUrl = `https://tagz.lol/${username}`;
+            
+            // Always use clipboard fallback to avoid permission errors
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(shareUrl).then(() => {
+                    // Show success message
+                    const button = event.target;
+                    const originalText = button.textContent;
+                    button.textContent = '✓ Copied!';
+                    button.style.backgroundColor = '#00ff88';
+                    
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.style.backgroundColor = '';
+                    }, 2000);
+                }).catch(() => {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = shareUrl;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    
+                    const button = event.target;
+                    const originalText = button.textContent;
+                    button.textContent = '✓ Copied!';
+                    button.style.backgroundColor = '#00ff88';
+                    
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.style.backgroundColor = '';
+                    }, 2000);
+                });
+            } else {
+                // Fallback for browsers without clipboard API
+                const textArea = document.createElement('textarea');
+                textArea.value = shareUrl;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                const button = event.target;
+                const originalText = button.textContent;
+                button.textContent = '✓ Copied!';
+                button.style.backgroundColor = '#00ff88';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.backgroundColor = '';
+                }, 2000);
+            }
+        }
+
+        // Update share button functionality
+        function updateShareButton() {
+            const shareButton = document.querySelector('button[onclick*="Share Link"]');
+            if (shareButton) {
+                shareButton.onclick = shareLink;
+            }
+        }
+
+        // Logout function
+        function logout() {
+            // Clear current user session
+            localStorage.removeItem('tagzCurrentUser');
+            
+            // Reset to default data
+            userData = getDefaultUserData();
+            links = [];
+            linkCounter = 0;
+            
+            showHome();
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+            setupEventListeners();
+            initScrollAnimations();
+            
+            // Set up share button
+            setTimeout(() => {
+                const shareButton = document.querySelector('.bg-neon-green[onclick*="Share"]');
+                if (shareButton) {
+                    shareButton.onclick = shareLink;
+                }
+            }, 1000);
+        });
+
+        // Close pages when clicking outside
+        document.getElementById('signUpPage').addEventListener('click', function(e) {
+            if (e.target === this) showHome();
+        });
+
+        document.getElementById('logInPage').addEventListener('click', function(e) {
+            if (e.target === this) showHome();
+        });
+
+        document.getElementById('analyticsPage').addEventListener('click', function(e) {
+            if (e.target === this) showDashboard(userData.username);
+        });
+
+        document.getElementById('notFoundPage').addEventListener('click', function(e) {
+            if (e.target === this) showHome();
+        });
+
+        // Real analytics tracking - no fake data simulation
+    </script>
+    <script>
+/* ---- Minimal SPA Router for tagz.lol ---- */
+
+// TEMP datastore until you add a real backend.
+// You can hydrate this from localStorage or your dashboard later.
+const DemoUsers = {
+  "flames": {
+    avatar: "https://avatars.githubusercontent.com/u/583231?v=4",
+    bio: "I build cool stuff 🔥",
+    links: [
+      { title: "Website", url: "https://example.com", icon: "🌐" },
+      { title: "Instagram", url: "https://instagram.com/yourname", icon: "📱" },
+      { title: "YouTube", url: "https://youtube.com/@yourname", icon: "▶️" }
+    ],
+    theme: "#00ff88"
+  }
+};
+
+// Helpers to show/hide your sections
+function hideAllPages() {
+  document.getElementById('homePage')?.classList.add('hidden');
+  document.getElementById('signUpPage')?.classList.add('hidden');
+  document.getElementById('logInPage')?.classList.add('hidden');
+  document.getElementById('dashboard')?.classList.add('hidden');
+  document.getElementById('analyticsPage')?.classList.add('hidden');
+  document.getElementById('notFoundPage')?.classList.add('hidden');
+  document.getElementById('publicProfilePage')?.classList.add('hidden');
+}
+
+function showHome() {
+  history.pushState({}, "", "/");
+  hideAllPages();
+  document.getElementById('homePage')?.classList.remove('hidden');
+}
+
+function showSignUp() {
+  history.pushState({}, "", "/signup");
+  hideAllPages();
+  document.getElementById('signUpPage')?.classList.remove('hidden');
+}
+
+function showLogIn() {
+  history.pushState({}, "", "/login");
+  hideAllPages();
+  document.getElementById('logInPage')?.classList.remove('hidden');
+}
+
+function showNotFound() {
+  hideAllPages();
+  document.getElementById('notFoundPage')?.classList.remove('hidden');
+}
+
+function showPublicProfile(user) {
+  hideAllPages();
+  const page = document.getElementById('publicProfilePage');
+  const a = (sel) => page.querySelector(sel);
+
+  a('#pp_username').textContent = '@' + user.username;
+  a('#pp_bio').textContent = user.data.bio || '';
+  a('#pp_avatar').src = user.data.avatar || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='112' height='112'%3E%3Crect width='112' height='112' fill='%23374151'/%3E%3Ctext x='56' y='70' text-anchor='middle' fill='%23ffffff' font-size='48'%3E👤%3C/text%3E%3C/svg%3E";
+
+  const linksWrap = a('#pp_links');
+  linksWrap.innerHTML = "";
+  (user.data.links || []).forEach(link => {
+    const btn = document.createElement('a');
+    btn.href = link.url;
+    btn.target = "_blank";
+    btn.rel = "noopener";
+    btn.className = "block w-full py-3 text-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white font-medium transition-all duration-300 hover:bg-neon-green hover:text-black hover:border-neon-green hover:scale-105";
+    btn.textContent = `${link.icon ? link.icon + " " : ""}${link.title}`;
+    linksWrap.appendChild(btn);
+  });
+
+  page.classList.remove('hidden');
+}
+
+// Main router
+function route() {
+  const path = (location.pathname || "/").replace(/\/+$/, "") || "/";
+  // console.log("Routing:", path);
+
+  if (path === "/") {
+    showHome();
+    return;
+  }
+  if (path === "/login") { hideAllPages(); document.getElementById('logInPage')?.classList.remove('hidden'); return; }
+  if (path === "/signup") { hideAllPages(); document.getElementById('signUpPage')?.classList.remove('hidden'); return; }
+
+  // Assume /:username
+  const username = path.slice(1).toLowerCase();
+
+  // Pull from localStorage first, else DemoUsers
+  const stored = JSON.parse(localStorage.getItem('tagz_users') || "{}");
+  const data = stored[username] || DemoUsers[username];
+
+  if (!data) {
+    showNotFound();
+    return;
+  }
+
+  showPublicProfile({ username, data });
+}
+
+// Intercept internal <a> clicks (optional, if you use anchors)
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a[href^="/"]');
+  if (!a) return;
+  const url = new URL(a.href);
+  if (url.origin === location.origin) {
+    e.preventDefault();
+    history.pushState({}, "", url.pathname);
+    route();
+  }
+});
+
+window.addEventListener('popstate', route);
+window.addEventListener('DOMContentLoaded', route);
+
+/* ---- OPTIONAL: connect your dashboard “Save Profile” to localStorage ----
+   Example: after user edits username/bio/links in your dashboard,
+   save it like this so their public page appears at /username. */
+
+window.savePublicProfile = function savePublicProfile() {
+  const username = (document.getElementById('username')?.value || "").trim().toLowerCase();
+  if (!username) return alert("Set a username");
+
+  const bio = document.getElementById('bio')?.value || "";
+  const avatar = document.getElementById('profilePreview')?.src || "";
+  const links = Array.from(document.querySelectorAll('#linksList .link-item')).map(item => {
+    return {
+      title: item.querySelector('.link-title')?.value || "Link",
+      url: item.querySelector('.link-url')?.value || "#",
+      icon: item.querySelector('.link-icon')?.value || ""
+    };
+  });
+
+  const users = JSON.parse(localStorage.getItem('tagz_users') || "{}");
+  users[username] = { bio, avatar, links };
+  localStorage.setItem('tagz_users', JSON.stringify(users));
+
+  // Navigate to their public page
+  history.pushState({}, "", "/" + username);
+  route();
+}
+</script>
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96c8a7e71370a56f',t:'MTc1NDc1NzIxMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
